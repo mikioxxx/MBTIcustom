@@ -43,6 +43,7 @@ const els = {
   mainDescription: document.querySelector("#mainDescription"),
   commentList: document.querySelector("#commentList"),
   resultCardImage: document.querySelector("#resultCardImage"),
+  roleImage: document.querySelector("#roleImage"),
   shareButton: document.querySelector("#shareButton"),
   copyButton: document.querySelector("#copyButton"),
   restartButton: document.querySelector("#restartButton")
@@ -301,8 +302,8 @@ async function renderResult() {
   els.scoreValue.textContent = `${result.score}%`;
   els.rankLabel.textContent = result.rank.label;
   els.scoreRing.style.background = `
-    radial-gradient(circle, rgba(15, 16, 22, 0.94) 0 56%, transparent 57%),
-    conic-gradient(var(--gold-bright) ${result.score * 3.6}deg, rgba(255, 255, 255, 0.08) 0deg)
+    radial-gradient(circle, rgba(7, 16, 12, 0.94) 0 56%, transparent 57%),
+    conic-gradient(var(--gold-bright) ${result.score * 3.6}deg, rgba(244, 247, 232, 0.08) 0deg)
   `;
   els.badgeRow.innerHTML = "";
   [
@@ -318,6 +319,8 @@ async function renderResult() {
     els.badgeRow.append(badge);
   });
   els.roleName.textContent = result.role.name;
+  els.roleImage.src = result.role.image;
+  els.roleImage.alt = `${result.role.name}の診断結果画像`;
   els.mainDescription.textContent = result.role.description;
   els.commentList.innerHTML = "";
   result.comments.forEach((comment) => {
@@ -344,20 +347,20 @@ function drawRadar(scores, canvas) {
   ctx.translate(center, height / 2);
 
   for (let ring = 1; ring <= 4; ring += 1) {
-    drawPolygon(ctx, config.attributes.length, (radius / 4) * ring, "rgba(229, 189, 104, 0.16)");
+    drawPolygon(ctx, config.attributes.length, (radius / 4) * ring, "rgba(183, 240, 74, 0.16)");
   }
 
   config.attributes.forEach((attr, index) => {
     const angle = getRadarAngle(index, config.attributes.length);
     const x = Math.cos(angle) * radius;
     const y = Math.sin(angle) * radius;
-    ctx.strokeStyle = "rgba(229, 189, 104, 0.16)";
+    ctx.strokeStyle = "rgba(183, 240, 74, 0.16)";
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(x, y);
     ctx.stroke();
 
-    ctx.fillStyle = "#f7f0df";
+    ctx.fillStyle = "#f4f7e8";
     ctx.font = "700 13px 'Noto Sans JP', sans-serif";
     ctx.textAlign = x < -20 ? "right" : x > 20 ? "left" : "center";
     ctx.textBaseline = y < -20 ? "bottom" : y > 20 ? "top" : "middle";
@@ -377,8 +380,8 @@ function drawRadar(scores, canvas) {
     }
   });
   ctx.closePath();
-  ctx.fillStyle = "rgba(105, 199, 192, 0.28)";
-  ctx.strokeStyle = "#ffdf8a";
+  ctx.fillStyle = "rgba(101, 214, 176, 0.3)";
+  ctx.strokeStyle = "#d7f76a";
   ctx.lineWidth = 2;
   ctx.fill();
   ctx.stroke();
@@ -412,48 +415,48 @@ async function createResultCard(result) {
   canvas.width = 1080;
   canvas.height = 1440;
   const ctx = canvas.getContext("2d");
-  const [profileImage, stickerImage] = await Promise.all([
+  const [profileImage, roleImage] = await Promise.all([
     loadCanvasImage("assets/pic/hayakawa-profile.png"),
-    loadCanvasImage("assets/pic/sticker-nice.webp")
+    loadCanvasImage(result.role.image)
   ]);
   const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  gradient.addColorStop(0, "#090a0f");
-  gradient.addColorStop(0.52, "#17202b");
-  gradient.addColorStop(1, "#0c0b12");
+  gradient.addColorStop(0, "#06100b");
+  gradient.addColorStop(0.52, "#102018");
+  gradient.addColorStop(1, "#11120c");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   drawCardOrnament(ctx);
   drawCircularImage(ctx, profileImage, 826, 170, 148);
-  drawStickerImage(ctx, stickerImage, 775, 884, 190, -0.1);
+  drawRoundedImage(ctx, roleImage, 636, 842, 340, 340, 30);
 
-  ctx.fillStyle = "#e5bd68";
+  ctx.fillStyle = "#d7f76a";
   ctx.font = "800 34px 'Noto Sans JP', sans-serif";
   ctx.textAlign = "center";
   ctx.fillText("早川相性ランキング診断", 540, 112);
 
-  ctx.fillStyle = "#f7f0df";
+  ctx.fillStyle = "#f4f7e8";
   drawFittedCanvasLine(ctx, `${result.score}%`, 540, 255, 260, 124, 96, "900");
 
-  ctx.fillStyle = "#ffdf8a";
+  ctx.fillStyle = "#d7f76a";
   drawFittedCanvasLine(ctx, result.role.name, 540, 388, 900, 76, 48, "900");
 
-  ctx.fillStyle = "#b8b3a8";
+  ctx.fillStyle = "#aab79d";
   drawFittedCanvasBlock(ctx, result.role.tagline, 540, 462, 760, 88, 31, 1.5, "700", "center");
 
   drawResultCardBadges(ctx, result);
 
-  ctx.fillStyle = "#f1e6d1";
+  ctx.fillStyle = "#eef7df";
   drawFittedCanvasBlock(ctx, result.role.description, 160, 660, 760, 220, 34, 1.55, "500", "left");
 
-  drawMiniRadar(ctx, result.attributes, 540, 1084, 142);
+  drawMiniRadar(ctx, result.attributes, 282, 1060, 118);
 
-  ctx.fillStyle = "#e5bd68";
+  ctx.fillStyle = "#f2c85b";
   ctx.font = "800 28px 'Noto Sans JP', sans-serif";
   ctx.textAlign = "center";
   ctx.fillText(`${result.rank.label} / ${result.primaryLabel} × ${result.secondaryLabel}`, 540, 1300);
 
-  ctx.fillStyle = "#8f8a80";
+  ctx.fillStyle = "#87937d";
   ctx.font = "500 24px 'Noto Sans JP', sans-serif";
   ctx.fillText(state.data.config.publicSiteUrl, 540, 1360);
 
@@ -478,18 +481,28 @@ function drawCircularImage(ctx, image, centerX, centerY, size) {
   ctx.restore();
   ctx.beginPath();
   ctx.arc(centerX, centerY, size / 2 + 6, 0, Math.PI * 2);
-  ctx.strokeStyle = "rgba(255, 223, 138, 0.74)";
+  ctx.strokeStyle = "rgba(215, 247, 106, 0.74)";
   ctx.lineWidth = 6;
   ctx.stroke();
 }
 
-function drawStickerImage(ctx, image, x, y, size, rotation) {
+function drawRoundedImage(ctx, image, x, y, width, height, radius) {
   ctx.save();
-  ctx.translate(x + size / 2, y + size / 2);
-  ctx.rotate(rotation);
-  ctx.globalAlpha = 0.9;
-  ctx.drawImage(image, -size / 2, -size / 2, size, size);
+  roundRect(ctx, x, y, width, height, radius);
+  ctx.clip();
+  drawCoverImage(ctx, image, x, y, width, height);
   ctx.restore();
+  roundRect(ctx, x, y, width, height, radius);
+  ctx.strokeStyle = "rgba(215, 247, 106, 0.55)";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+}
+
+function drawCoverImage(ctx, image, x, y, width, height) {
+  const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
+  const drawWidth = image.naturalWidth * scale;
+  const drawHeight = image.naturalHeight * scale;
+  ctx.drawImage(image, x + (width - drawWidth) / 2, y + (height - drawHeight) / 2, drawWidth, drawHeight);
 }
 
 function drawCardOrnament(ctx) {
@@ -498,7 +511,7 @@ function drawCardOrnament(ctx) {
   for (let index = 0; index < 3; index += 1) {
     ctx.beginPath();
     ctx.arc(0, 0, 390 - index * 58, 0, Math.PI * 2);
-    ctx.strokeStyle = `rgba(229, 189, 104, ${0.18 - index * 0.04})`;
+    ctx.strokeStyle = `rgba(183, 240, 74, ${0.18 - index * 0.04})`;
     ctx.lineWidth = 2;
     ctx.stroke();
   }
@@ -507,7 +520,7 @@ function drawCardOrnament(ctx) {
     ctx.beginPath();
     ctx.moveTo(Math.cos(angle) * 290, Math.sin(angle) * 290);
     ctx.lineTo(Math.cos(angle) * 430, Math.sin(angle) * 430);
-    ctx.strokeStyle = "rgba(105, 199, 192, 0.12)";
+    ctx.strokeStyle = "rgba(101, 214, 176, 0.13)";
     ctx.stroke();
   }
   ctx.restore();
@@ -521,11 +534,11 @@ function drawResultCardBadges(ctx, result) {
   badges.forEach((text, index) => {
     const width = widths[index];
     roundRect(ctx, x, 560, width, 58, 29);
-    ctx.fillStyle = "rgba(229, 189, 104, 0.16)";
+    ctx.fillStyle = "rgba(183, 240, 74, 0.16)";
     ctx.fill();
-    ctx.strokeStyle = "rgba(255, 223, 138, 0.5)";
+    ctx.strokeStyle = "rgba(215, 247, 106, 0.5)";
     ctx.stroke();
-    ctx.fillStyle = "#f7f0df";
+    ctx.fillStyle = "#f4f7e8";
     ctx.font = "800 24px 'Noto Sans JP', sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -539,7 +552,7 @@ function drawMiniRadar(ctx, scores, centerX, centerY, radius) {
   ctx.save();
   ctx.translate(centerX, centerY);
   for (let ring = 1; ring <= 4; ring += 1) {
-    drawPolygon(ctx, attrs.length, (radius / 4) * ring, "rgba(229, 189, 104, 0.25)");
+    drawPolygon(ctx, attrs.length, (radius / 4) * ring, "rgba(183, 240, 74, 0.25)");
   }
   ctx.beginPath();
   attrs.forEach((attr, index) => {
@@ -550,14 +563,14 @@ function drawMiniRadar(ctx, scores, centerX, centerY, radius) {
     index === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
   });
   ctx.closePath();
-  ctx.fillStyle = "rgba(105, 199, 192, 0.32)";
-  ctx.strokeStyle = "#ffdf8a";
+  ctx.fillStyle = "rgba(101, 214, 176, 0.34)";
+  ctx.strokeStyle = "#d7f76a";
   ctx.lineWidth = 4;
   ctx.fill();
   ctx.stroke();
   attrs.forEach((attr, index) => {
     const angle = getRadarAngle(index, attrs.length);
-    ctx.fillStyle = "#f7f0df";
+    ctx.fillStyle = "#f4f7e8";
     ctx.font = "700 19px 'Noto Sans JP', sans-serif";
     ctx.textAlign = Math.cos(angle) < -0.2 ? "right" : Math.cos(angle) > 0.2 ? "left" : "center";
     ctx.textBaseline = Math.sin(angle) < -0.2 ? "bottom" : Math.sin(angle) > 0.2 ? "top" : "middle";
