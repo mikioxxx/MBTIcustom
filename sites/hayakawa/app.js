@@ -428,7 +428,7 @@ async function createResultCard(result) {
 
   drawCardOrnament(ctx);
   drawCircularImage(ctx, profileImage, 826, 170, 148);
-  drawRoundedImage(ctx, roleImage, 636, 842, 340, 340, 30);
+  drawRoundedImage(ctx, roleImage, 560, 742, 470, 470, 36);
 
   ctx.fillStyle = "#d7f76a";
   ctx.font = "800 34px 'Noto Sans JP', sans-serif";
@@ -447,9 +447,9 @@ async function createResultCard(result) {
   drawResultCardBadges(ctx, result);
 
   ctx.fillStyle = "#eef7df";
-  drawFittedCanvasBlock(ctx, result.role.description, 160, 660, 760, 220, 34, 1.55, "500", "left");
+  drawFittedCanvasBlock(ctx, result.role.description, 92, 646, 440, 300, 38, 1.52, "500", "left");
 
-  drawMiniRadar(ctx, result.attributes, 282, 1060, 118);
+  drawMiniRadar(ctx, result.attributes, 280, 1090, 112);
 
   ctx.fillStyle = "#f2c85b";
   ctx.font = "800 28px 'Noto Sans JP', sans-serif";
