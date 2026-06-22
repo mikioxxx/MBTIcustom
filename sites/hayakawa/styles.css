@@ -818,6 +818,14 @@ h1::after {
     grid-template-columns: 1fr;
   }
 
+  .explain-panel {
+    order: 1;
+  }
+
+  .score-panel {
+    order: 2;
+  }
+
   .role-image-frame {
     width: 100%;
   }
