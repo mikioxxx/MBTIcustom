@@ -673,6 +673,7 @@ h1 {
   }
 
   .start-strip {
+    position: static;
     align-items: stretch;
     flex-direction: column;
   }
