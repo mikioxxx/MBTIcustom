@@ -6,6 +6,7 @@ const DATA_FILES = {
   ranks: "data/rank-labels.json",
   copy: "data/copy-templates.json"
 };
+const ASSET_VERSION = "20260622-role-gallery";
 
 const state = {
   data: null,
@@ -44,6 +45,8 @@ const els = {
   commentList: document.querySelector("#commentList"),
   resultCardImage: document.querySelector("#resultCardImage"),
   roleImage: document.querySelector("#roleImage"),
+  roleGalleryToggle: document.querySelector("#roleGalleryToggle"),
+  roleGalleryGrid: document.querySelector("#roleGalleryGrid"),
   shareButton: document.querySelector("#shareButton"),
   copyButton: document.querySelector("#copyButton"),
   restartButton: document.querySelector("#restartButton")
@@ -55,7 +58,11 @@ async function init() {
   state.data = await loadAppData();
   els.startQuestionCount.textContent = `診断は${state.data.config.questions.length}問`;
   renderTypePicker();
+  renderRoleGallery();
   bindEvents();
+  if (new URLSearchParams(window.location.search).has("roleGallery")) {
+    setRoleGalleryOpen(true);
+  }
 }
 
 async function loadAppData() {
@@ -83,6 +90,31 @@ function bindEvents() {
   els.restartButton.addEventListener("click", restart);
   els.copyButton.addEventListener("click", copyResultText);
   els.shareButton.addEventListener("click", shareResult);
+  els.roleGalleryToggle.addEventListener("click", () => {
+    setRoleGalleryOpen(els.roleGalleryGrid.classList.contains("is-hidden"));
+  });
+}
+
+function renderRoleGallery() {
+  els.roleGalleryGrid.innerHTML = "";
+  state.data.roles.roles.forEach((role) => {
+    const card = document.createElement("article");
+    card.className = "role-gallery-card";
+    card.innerHTML = `
+      <img src="${role.image}?v=${ASSET_VERSION}" alt="${role.name}の称号イラスト" loading="lazy" />
+      <div>
+        <strong>${role.name}</strong>
+        <span>${role.id}</span>
+      </div>
+    `;
+    els.roleGalleryGrid.append(card);
+  });
+}
+
+function setRoleGalleryOpen(isOpen) {
+  els.roleGalleryGrid.classList.toggle("is-hidden", !isOpen);
+  els.roleGalleryToggle.setAttribute("aria-expanded", String(isOpen));
+  els.roleGalleryToggle.textContent = isOpen ? "一覧を閉じる" : "一覧を見る";
 }
 
 function renderTypePicker() {
@@ -110,7 +142,7 @@ function createOptionButton(code, name, group) {
   button.setAttribute("aria-label", `${name} ${code}`);
   const imagePath = group === "mbti" ? `assets/mbti/${code}.png` : `assets/lovetype/${code}.png`;
   button.innerHTML = `
-    <img class="option-image" src="${imagePath}" alt="${name} ${code}" loading="lazy" />
+    <img class="option-image" src="${imagePath}?v=${ASSET_VERSION}" alt="${name} ${code}" loading="lazy" />
   `;
   button.addEventListener("click", () => {
     if (group === "mbti") {

@@ -1,8 +1,8 @@
 {
   "LAPO": { "baseScore": 88, "vector": { "vibe": 70, "freedom": 78, "charm": 88, "support": 66, "spark": 54, "distance": 78 }, "comment": "パーフェクトカメレオン同士なので、早川の合わせ上手な面を感覚で理解できます。近さよりも呼吸の合い方が強みです。" },
   "LCRO": { "baseScore": 70, "vector": { "vibe": 58, "freedom": 48, "charm": 50, "support": 66, "spark": 76, "distance": 44 }, "comment": "ボス猫タイプのあなたは主導権を持ちやすく、早川とは軽い張り合いが魅力になります。" },
-  "LCPE": { "baseScore": 68, "vector": { "vibe": 52, "freedom": 46, "charm": 58, "support": 62, "spark": 74, "distance": 50 }, "comment": "隠れベイビーなあなたは、強がりすぎない甘え方で早川の世話焼きな反応を引き出します。" },
-  "LCRE": { "baseScore": 90, "vector": { "vibe": 82, "freedom": 72, "charm": 90, "support": 62, "spark": 64, "distance": 62 }, "comment": "ちゃっかりうさぎなあなたは、早川の柔らかさに甘えつつ、場を重くしない愛嬌を出せます。" },
+  "LCPE": { "baseScore": 68, "vector": { "vibe": 52, "freedom": 46, "charm": 58, "support": 62, "spark": 74, "distance": 50 }, "comment": "ツンデレヤンキーなあなたは、素直になりきれない強がりと照れのある反応で、早川とのやり取りに独特の熱を作れます。" },
+  "LCRE": { "baseScore": 90, "vector": { "vibe": 82, "freedom": 72, "charm": 90, "support": 62, "spark": 64, "distance": 62 }, "comment": "隠れベイビーなあなたは、しっかり者に見えて実は甘えたいギャップで、早川の柔らかい反応を自然に引き出します。" },
   "LARO": { "baseScore": 76, "vector": { "vibe": 76, "freedom": 72, "charm": 70, "support": 46, "spark": 82, "distance": 44 }, "comment": "憧れの先輩なあなたは、早川に余裕のある空気を見せられるタイプです。" },
   "LARE": { "baseScore": 62, "vector": { "vibe": 78, "freedom": 56, "charm": 64, "support": 38, "spark": 86, "distance": 34 }, "comment": "カリスマバランサーなあなたは、早川の自由さと場の空気の両方を見ながら反応できます。" },
   "LAPE": { "baseScore": 84, "vector": { "vibe": 74, "freedom": 78, "charm": 86, "support": 50, "spark": 76, "distance": 58 }, "comment": "キャプテンライオンなあなたは、華やかさと主導力で早川の場を強く盛り上げられます。" },

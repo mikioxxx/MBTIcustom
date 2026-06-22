@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@700&family=Noto+Sans+JP:wght@400;500;700;900&family=Playfair+Display:wght@700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260622-result-order" />
+    <link rel="stylesheet" href="styles.css?v=20260622-role-gallery" />
   </head>
   <body>
     <div class="ambient" aria-hidden="true"></div>
@@ -86,6 +86,19 @@
             診断を始める
           </button>
         </div>
+
+        <section class="role-gallery-panel" aria-labelledby="roleGalleryHeading">
+          <div class="role-gallery-head">
+            <div>
+              <p class="eyebrow">Title illustrations</p>
+              <h2 id="roleGalleryHeading">称号画像一覧</h2>
+            </div>
+            <button class="ghost-action" id="roleGalleryToggle" type="button" aria-expanded="false">
+              一覧を見る
+            </button>
+          </div>
+          <div class="role-gallery-grid is-hidden" id="roleGalleryGrid"></div>
+        </section>
       </section>
 
       <section class="quiz-view is-hidden" id="quizView" aria-live="polite">
@@ -161,6 +174,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=20260622-role-image-large" type="module"></script>
+    <script src="app.js?v=20260622-role-gallery" type="module"></script>
   </body>
 </html>
