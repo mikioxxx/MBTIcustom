@@ -1,0 +1,18 @@
+{
+  "LAPO": { "baseScore": 88, "vector": { "vibe": 70, "freedom": 78, "charm": 88, "support": 66, "spark": 54, "distance": 78 }, "comment": "パーフェクトカメレオン同士なので、早川の合わせ上手な面を感覚で理解できます。近さよりも呼吸の合い方が強みです。" },
+  "LCRO": { "baseScore": 70, "vector": { "vibe": 58, "freedom": 48, "charm": 50, "support": 66, "spark": 76, "distance": 44 }, "comment": "ボス猫タイプのあなたは主導権を持ちやすく、早川とは軽い張り合いが魅力になります。" },
+  "LCPE": { "baseScore": 68, "vector": { "vibe": 52, "freedom": 46, "charm": 58, "support": 62, "spark": 74, "distance": 50 }, "comment": "隠れベイビーなあなたは、強がりすぎない甘え方で早川の世話焼きな反応を引き出します。" },
+  "LCRE": { "baseScore": 90, "vector": { "vibe": 82, "freedom": 72, "charm": 90, "support": 62, "spark": 64, "distance": 62 }, "comment": "ちゃっかりうさぎなあなたは、早川の柔らかさに甘えつつ、場を重くしない愛嬌を出せます。" },
+  "LARO": { "baseScore": 76, "vector": { "vibe": 76, "freedom": 72, "charm": 70, "support": 46, "spark": 82, "distance": 44 }, "comment": "憧れの先輩なあなたは、早川に余裕のある空気を見せられるタイプです。" },
+  "LARE": { "baseScore": 62, "vector": { "vibe": 78, "freedom": 56, "charm": 64, "support": 38, "spark": 86, "distance": 34 }, "comment": "カリスマバランサーなあなたは、早川の自由さと場の空気の両方を見ながら反応できます。" },
+  "LAPE": { "baseScore": 84, "vector": { "vibe": 74, "freedom": 78, "charm": 86, "support": 50, "spark": 76, "distance": 58 }, "comment": "キャプテンライオンなあなたは、華やかさと主導力で早川の場を強く盛り上げられます。" },
+  "LCPO": { "baseScore": 74, "vector": { "vibe": 82, "freedom": 68, "charm": 62, "support": 42, "spark": 82, "distance": 44 }, "comment": "主役体質のあなたは、早川と一緒に場を明るくできます。前に出る量のバランスが大事です。" },
+  "FCPE": { "baseScore": 86, "vector": { "vibe": 62, "freedom": 62, "charm": 72, "support": 92, "spark": 42, "distance": 72 }, "comment": "忠犬ハチ公なあなたは、早川をまっすぐ支える力が強く、信頼枠に入りやすいタイプです。" },
+  "FARE": { "baseScore": 88, "vector": { "vibe": 60, "freedom": 66, "charm": 68, "support": 90, "spark": 50, "distance": 80 }, "comment": "敏腕マネージャーなあなたは、早川が自由に動けるよう裏側を整えられる相性です。" },
+  "FCRO": { "baseScore": 76, "vector": { "vibe": 76, "freedom": 72, "charm": 70, "support": 46, "spark": 82, "distance": 44 }, "comment": "ロマンスマジシャンなあなたは、早川との空気に少しドラマを足せるタイプです。" },
+  "FCRE": { "baseScore": 90, "vector": { "vibe": 82, "freedom": 72, "charm": 90, "support": 62, "spark": 64, "distance": 62 }, "comment": "ちゃっかりうさぎなあなたは、早川の柔らかさに甘えつつ、場を重くしない愛嬌を出せます。" },
+  "FAPE": { "baseScore": 80, "vector": { "vibe": 66, "freedom": 76, "charm": 78, "support": 68, "spark": 48, "distance": 78 }, "comment": "最後の恋人タイプのあなたは、早川の変化を長い目で受け止める包容力があります。" },
+  "FAPO": { "baseScore": 84, "vector": { "vibe": 74, "freedom": 78, "charm": 86, "support": 50, "spark": 76, "distance": 58 }, "comment": "デビル天使なあなたは、可愛さと小悪魔感で早川のリアクションを引き出しやすい相性です。" },
+  "FARO": { "baseScore": 82, "vector": { "vibe": 78, "freedom": 72, "charm": 88, "support": 52, "spark": 64, "distance": 60 }, "comment": "不思議生命体なあなたは、早川の好奇心をくすぐる独特な空気を持っています。" },
+  "FCPO": { "baseScore": 62, "vector": { "vibe": 78, "freedom": 56, "charm": 64, "support": 38, "spark": 86, "distance": 34 }, "comment": "恋愛モンスターなあなたは熱量が強め。早川とは盛り上がる反面、距離感が鍵になります。" }
+}

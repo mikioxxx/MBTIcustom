@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MBTIとラブタイプから、TikTokライバー早川との相性度と称号がわかる診断サイト。"
+    />
+    <title>早川相性ランキング診断</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260622-profile-result" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <main class="app-shell">
+      <section class="intro-view" id="introView">
+        <div class="hero-layout">
+          <div class="intro-copy">
+            <p class="eyebrow">MBTI × Love Type compatibility</p>
+            <h1>早川相性ランキング診断</h1>
+            <p class="lead">
+              ENFPでパーフェクトカメレオンな早川にとって、あなたはどんな存在なのか。
+              相性度と「早川の〇〇」称号で診断します。
+            </p>
+          </div>
+
+          <aside class="creator-visual" aria-label="早川プロフィール">
+            <div class="creator-orbit" aria-hidden="true"></div>
+            <img class="creator-photo" src="assets/pic/hayakawa-profile.png" alt="早川" />
+            <img class="creator-sticker sticker-a" src="assets/pic/sticker-win.webp" alt="" />
+            <img class="creator-sticker sticker-b" src="assets/pic/sticker-nice.webp" alt="" />
+            <div class="creator-caption">
+              <span>ENFP</span>
+              <strong>Perfect Chameleon</strong>
+            </div>
+          </aside>
+        </div>
+
+        <div class="selection-layout">
+          <section class="selection-panel" aria-labelledby="mbtiHeading">
+            <div class="panel-heading">
+              <span>01</span>
+              <h2 id="mbtiHeading">あなたのMBTI</h2>
+            </div>
+            <div class="option-grid mbti-grid" id="mbtiOptions"></div>
+          </section>
+
+          <section class="selection-panel" aria-labelledby="loveHeading">
+            <div class="panel-heading">
+              <span>02</span>
+              <h2 id="loveHeading">あなたのラブタイプ</h2>
+            </div>
+            <div class="option-grid love-grid" id="loveOptions"></div>
+          </section>
+        </div>
+
+        <div class="start-strip">
+          <div>
+            <strong id="startQuestionCount">診断は8問</strong>
+            <span>わからない項目は未選択でも進めます</span>
+          </div>
+          <button class="primary-action" id="startButton" type="button">
+            診断を始める
+          </button>
+        </div>
+      </section>
+
+      <section class="quiz-view is-hidden" id="quizView" aria-live="polite">
+        <div class="quiz-progress">
+          <span id="questionCounter">1 / 12</span>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+        <article class="question-panel">
+          <p class="question-kicker">正解はありません。早川との距離感で選んでください。</p>
+          <h2 id="questionText"></h2>
+          <div class="scale-labels">
+            <span id="leftLabel"></span>
+            <span id="rightLabel"></span>
+          </div>
+          <div class="answer-row" id="answerRow"></div>
+        </article>
+        <div class="quiz-actions">
+          <button class="ghost-action" id="backButton" type="button">戻る</button>
+          <button class="ghost-action" id="skipButton" type="button">次へ</button>
+        </div>
+      </section>
+
+      <section class="result-view is-hidden" id="resultView">
+        <div class="result-head">
+          <p class="eyebrow">Hayakawa compatibility result</p>
+          <h2 id="resultTitle"></h2>
+          <p id="resultSubtitle"></p>
+        </div>
+
+        <div class="result-layout">
+          <section class="score-panel">
+            <div class="score-ring" id="scoreRing">
+              <span id="scoreValue">0%</span>
+              <small id="rankLabel"></small>
+            </div>
+            <div class="badge-row" id="badgeRow"></div>
+            <canvas id="radarCanvas" width="360" height="360" aria-label="相性属性グラフ"></canvas>
+          </section>
+
+          <section class="explain-panel">
+            <div class="result-creator">
+              <img src="assets/pic/hayakawa-profile.png" alt="早川" />
+              <div>
+                <span>早川判定</span>
+                <strong>ENFP × パーフェクトカメレオン基準</strong>
+              </div>
+            </div>
+            <h3 id="roleName"></h3>
+            <p id="mainDescription"></p>
+            <div class="comment-list" id="commentList"></div>
+          </section>
+        </div>
+
+        <section class="share-section">
+          <div class="share-copy">
+            <h3>保存・共有用カード</h3>
+            <p>配信コメントやSNSで結果を見せやすい3:4カードです。</p>
+          </div>
+          <div class="card-preview">
+            <img id="resultCardImage" alt="早川相性ランキング診断の結果カード" />
+          </div>
+          <div class="share-actions">
+            <button class="primary-action" id="shareButton" type="button">結果を共有</button>
+            <button class="ghost-action" id="copyButton" type="button">結果文をコピー</button>
+            <button class="ghost-action" id="restartButton" type="button">もう一度診断</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js?v=20260622-profile-result" type="module"></script>
+  </body>
+</html>

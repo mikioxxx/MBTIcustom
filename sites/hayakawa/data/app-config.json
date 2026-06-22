@@ -1,0 +1,103 @@
+{
+  "publicSiteUrl": "https://mikioxxx.github.io/MBTIcustom/",
+  "hayakawa": {
+    "name": "早川",
+    "mbti": "ENFP",
+    "loveType": "LAPO",
+    "loveTypeName": "パーフェクトカメレオン"
+  },
+  "attributes": [
+    { "key": "vibe", "label": "ノリ共鳴" },
+    { "key": "freedom", "label": "自由許容" },
+    { "key": "charm", "label": "愛嬌反応" },
+    { "key": "support", "label": "支援安定" },
+    { "key": "spark", "label": "刺激交換" },
+    { "key": "distance", "label": "距離感理解" }
+  ],
+  "mbtiTypes": [
+    { "code": "INTJ", "name": "建築家" },
+    { "code": "INTP", "name": "論理学者" },
+    { "code": "ENTJ", "name": "指揮官" },
+    { "code": "ENTP", "name": "討論者" },
+    { "code": "INFJ", "name": "提唱者" },
+    { "code": "INFP", "name": "仲介者" },
+    { "code": "ENFJ", "name": "主人公" },
+    { "code": "ENFP", "name": "運動家" },
+    { "code": "ISTJ", "name": "管理者" },
+    { "code": "ISFJ", "name": "擁護者" },
+    { "code": "ESTJ", "name": "幹部" },
+    { "code": "ESFJ", "name": "領事" },
+    { "code": "ISTP", "name": "巨匠" },
+    { "code": "ISFP", "name": "冒険家" },
+    { "code": "ESTP", "name": "起業家" },
+    { "code": "ESFP", "name": "エンターテイナー" }
+  ],
+  "loveTypes": [
+    { "code": "LAPE", "name": "キャプテンライオン" },
+    { "code": "LAPO", "name": "パーフェクトカメレオン" },
+    { "code": "LARE", "name": "カリスマバランサー" },
+    { "code": "LARO", "name": "ロマンスマジシャン" },
+    { "code": "LCPE", "name": "隠れベイビー" },
+    { "code": "LCPO", "name": "主役体質" },
+    { "code": "LCRE", "name": "隠れベイビー" },
+    { "code": "LCRO", "name": "ボス猫" },
+    { "code": "FAPE", "name": "最後の恋人" },
+    { "code": "FAPO", "name": "デビル天使" },
+    { "code": "FARE", "name": "敏腕マネージャー" },
+    { "code": "FARO", "name": "不思議生命体" },
+    { "code": "FCPE", "name": "忠犬ハチ公" },
+    { "code": "FCPO", "name": "恋愛モンスター" },
+    { "code": "FCRE", "name": "ちゃっかりうさぎ" },
+    { "code": "FCRO", "name": "ロマンスマジシャン" }
+  ],
+  "questions": [
+    {
+      "text": "早川が急に話題を変えたら、あなたはどう反応しやすい？",
+      "left": "一度整理したい",
+      "right": "すぐ乗っかる",
+      "weights": { "vibe": 8, "freedom": 5, "spark": 4 }
+    },
+    {
+      "text": "配信中の早川が少し自由すぎる時、あなたはどう感じる？",
+      "left": "落ち着いてほしい",
+      "right": "そこが面白い",
+      "weights": { "freedom": 9, "vibe": 4, "distance": 3 }
+    },
+    {
+      "text": "早川が相手に合わせて雰囲気を変えるところを見た時の印象は？",
+      "left": "本音が気になる",
+      "right": "器用で魅力的",
+      "weights": { "charm": 8, "distance": 5, "support": 3 }
+    },
+    {
+      "text": "コメント欄では、どちらの立ち位置が近い？",
+      "left": "静かに見守る",
+      "right": "流れを作る",
+      "weights": { "spark": 7, "vibe": 5, "support": -3 }
+    },
+    {
+      "text": "早川が落ち込んでいそうな時、あなたはどうしたい？",
+      "left": "そっとしておく",
+      "right": "言葉で支える",
+      "weights": { "support": 8, "charm": 3, "distance": -2 }
+    },
+    {
+      "text": "早川と仲良くなるなら、どの距離感が心地いい？",
+      "left": "近くで深く",
+      "right": "自由にゆるく",
+      "weights": { "distance": 7, "freedom": 5, "support": -2 }
+    },
+    {
+      "text": "早川に軽くいじられたら、あなたはどう返す？",
+      "left": "照れて受ける",
+      "right": "すぐ返す",
+      "weights": { "spark": 8, "vibe": 5, "charm": 2 }
+    },
+    {
+      "text": "早川の本音が見えにくい時、あなたはどうする？",
+      "left": "深く聞きたい",
+      "right": "無理に踏み込まない",
+      "weights": { "distance": 8, "support": 3, "charm": 3 }
+    }
+  ]
+}

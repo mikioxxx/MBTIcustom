@@ -1,0 +1,217 @@
+{
+  "roles": [
+    {
+      "id": "inner_circle",
+      "name": "早川の側近",
+      "primary": "support",
+      "secondary": ["distance", "charm"],
+      "tagline": "自由な早川を近くで支える参謀枠",
+      "description": "あなたは、早川が自由に動いている時ほど価値が出るタイプです。前に出すぎず、でも必要な時には反応できるので、早川にとってはかなり近くに置きたい存在です。"
+    },
+    {
+      "id": "best_friend",
+      "name": "早川の親友",
+      "primary": "vibe",
+      "secondary": ["freedom", "charm"],
+      "tagline": "テンションの波に一緒に乗れる近距離枠",
+      "description": "あなたは、早川の明るさや急なひらめきを否定せず、一緒に面白がれるタイプです。説明しなくてもノリが通じるので、コメント欄でも空気を一段明るくできます。"
+    },
+    {
+      "id": "rival",
+      "name": "早川のライバル",
+      "primary": "spark",
+      "secondary": ["vibe", "freedom"],
+      "tagline": "火花を散らして場を熱くする刺激枠",
+      "description": "あなたは、早川にただ合わせるだけではなく、軽く張り合うことで魅力が出るタイプです。いじり合い、ツッコミ、反応の速さで、配信の温度を上げられます。"
+    },
+    {
+      "id": "keeper",
+      "name": "早川の放し飼い係",
+      "primary": "freedom",
+      "secondary": ["distance", "vibe"],
+      "tagline": "縛らず、離れず、自由を面白がれる枠",
+      "description": "あなたは、早川の予測不能な動きを止めるより先に楽しめるタイプです。近くにいるのに縛らない距離感を作れるので、早川がかなり自然体でいられます。"
+    },
+    {
+      "id": "healer",
+      "name": "早川の癒やし枠",
+      "primary": "charm",
+      "secondary": ["support", "distance"],
+      "tagline": "柔らかい反応で早川の本音をほどく存在",
+      "description": "あなたは、早川の人に合わせる柔らかさをちゃんと魅力として受け取れるタイプです。安心して話せる空気を作れるので、早川にとって気を張らずにいられる存在です。"
+    },
+    {
+      "id": "comment_driver",
+      "name": "早川の火付け役",
+      "primary": "vibe",
+      "secondary": ["spark"],
+      "tagline": "コメント欄の流れを作る盛り上げ枠",
+      "description": "あなたは、早川のテンションが上がる瞬間を見逃さず、すぐ反応できるタイプです。あなたがいると場が動き、早川もさらに話しやすくなります。"
+    },
+    {
+      "id": "observer",
+      "name": "早川の観測者",
+      "primary": "distance",
+      "secondary": ["support", "charm"],
+      "tagline": "踏み込みすぎず魅力を見守る理解者枠",
+      "description": "あなたは、早川の本音を無理に暴こうとせず、変化や空気を静かに見ています。その落ち着いた距離感が、早川にとっては意外と居心地の良さになります。"
+    },
+    {
+      "id": "manager",
+      "name": "早川の敏腕マネージャー",
+      "primary": "support",
+      "secondary": ["freedom"],
+      "tagline": "自由を守るために裏側を整える実務枠",
+      "description": "あなたは、早川の自由さをただ眺めるだけでなく、動きやすい空気を作れるタイプです。支える力と許容力があるので、配信の土台を強くできます。"
+    },
+    {
+      "id": "trickster",
+      "name": "早川のツッコミ担当",
+      "primary": "spark",
+      "secondary": ["distance"],
+      "tagline": "近すぎない距離から鋭く返す反応職人",
+      "description": "あなたは、早川の発言を受け止めるだけでなく、ちょうどいい強さで返せるタイプです。距離感があるからこそ、ツッコミが重くならずに場を楽しくできます。"
+    },
+    {
+      "id": "sweet_spot",
+      "name": "早川の沼仲間",
+      "primary": "charm",
+      "secondary": ["vibe", "freedom"],
+      "tagline": "気づいたら一緒に深くハマっている共鳴枠",
+      "description": "あなたは、早川の愛嬌や空気の変え方に自然と引き込まれるタイプです。楽しい、かわいい、気になる、という感覚が重なりやすく、気づくとかなり深くハマります。"
+    },
+    {
+      "id": "voice_amplifier",
+      "name": "早川の拡声器",
+      "primary": "vibe",
+      "secondary": ["support", "spark"],
+      "tagline": "早川の面白さを周りに広げる宣伝隊長",
+      "description": "あなたは、早川の良さを自分だけで楽しむより、周りにも伝えたくなるタイプです。コメントや反応で空気を広げられるので、早川の魅力が見えやすくなります。"
+    },
+    {
+      "id": "festival_crew",
+      "name": "早川の祭り係",
+      "primary": "vibe",
+      "secondary": ["distance", "support"],
+      "tagline": "平和なテンションで枠全体を明るくする賑やかし枠",
+      "description": "あなたは、早川のテンションに乗りながらも、場を荒らさず明るくできます。派手に前へ出すぎない盛り上げ方ができるので、枠の空気を楽しく保てます。"
+    },
+    {
+      "id": "weather_vane",
+      "name": "早川の風向き係",
+      "primary": "freedom",
+      "secondary": ["support", "charm"],
+      "tagline": "変化を読んで自然に合わせる空気読み職人",
+      "description": "あなたは、早川の気分や話題の流れが変わる瞬間に気づきやすいタイプです。無理に止めるのではなく、風向きに合わせて一緒に進めるところが強みです。"
+    },
+    {
+      "id": "escape_route",
+      "name": "早川の逃げ道",
+      "primary": "freedom",
+      "secondary": ["charm", "spark"],
+      "tagline": "重くなりそうな空気を軽くする抜け道枠",
+      "description": "あなたは、早川が少し詰まりそうな時に、空気をふっと軽くできるタイプです。自由さと愛嬌のバランスがあり、早川が気楽に戻ってこられる余白を作れます。"
+    },
+    {
+      "id": "boundary_guard",
+      "name": "早川の結界師",
+      "primary": "distance",
+      "secondary": ["freedom", "support"],
+      "tagline": "近すぎる熱量から早川の自由を守る番人",
+      "description": "あなたは、早川との距離を詰めるだけが愛情ではないとわかっているタイプです。空気を読みながら一歩引けるので、早川が自由でいられる場所を守れます。"
+    },
+    {
+      "id": "secret_base",
+      "name": "早川の秘密基地",
+      "primary": "distance",
+      "secondary": ["vibe", "spark"],
+      "tagline": "騒がしさの奥に居場所を作る隠れ家枠",
+      "description": "あなたは、盛り上がりに参加しつつも、どこか落ち着いた居場所を作れるタイプです。早川がふと戻ってきたくなるような、軽さと安心感の混ざった相性です。"
+    },
+    {
+      "id": "battery",
+      "name": "早川の充電器",
+      "primary": "support",
+      "secondary": ["vibe", "spark"],
+      "tagline": "反応と安心感で早川の元気を戻す補給枠",
+      "description": "あなたは、ただ見守るだけでなく、必要な時にちゃんと反応を返せるタイプです。早川が元気を出したい時、あなたの言葉やノリが小さな充電になります。"
+    },
+    {
+      "id": "anchor",
+      "name": "早川の碇",
+      "primary": "support",
+      "secondary": ["spark"],
+      "tagline": "騒がしい流れの中でも軸を作る安定枠",
+      "description": "あなたは、場が盛り上がっても流されすぎず、早川が戻れる軸を作れるタイプです。刺激を楽しみながらも、最後は安心できる方向へ整えられます。"
+    },
+    {
+      "id": "mirror",
+      "name": "早川の合わせ鏡",
+      "primary": "charm",
+      "secondary": ["spark"],
+      "tagline": "早川の表情を映して魅力を引き出す反射枠",
+      "description": "あなたは、早川の反応に合わせて自分の返し方も変えられるタイプです。相手に合わせる力同士が響くので、会話のテンポが自然に面白くなります。"
+    },
+    {
+      "id": "soft_landing",
+      "name": "早川の着地点",
+      "primary": "charm",
+      "secondary": ["distance"],
+      "tagline": "自由に跳ねた早川をやさしく受け止める終着枠",
+      "description": "あなたは、早川が自由に話した後の余韻をうまく受け止められるタイプです。強く引っ張るよりも、最後にふわっと着地させる関わり方が似合います。"
+    },
+    {
+      "id": "spark_plug",
+      "name": "早川の点火プラグ",
+      "primary": "spark",
+      "secondary": ["support", "charm"],
+      "tagline": "小さな一言で早川のテンションに火を入れる起爆枠",
+      "description": "あなたは、長く話さなくても一言で場を動かせるタイプです。早川が拾いやすい刺激を投げられるので、配信の流れを一気に明るくできます。"
+    },
+    {
+      "id": "chaos_partner",
+      "name": "早川の共犯者",
+      "primary": "spark",
+      "secondary": ["charm"],
+      "tagline": "一緒に少しだけ悪ノリできるいたずら枠",
+      "description": "あなたは、早川の遊び心に乗りながら、場を壊さない範囲で悪ノリできるタイプです。笑いの温度を上げつつ、ちゃんと愛嬌で着地できます。"
+    },
+    {
+      "id": "rare_guest",
+      "name": "早川のレア客",
+      "primary": "distance",
+      "secondary": ["spark"],
+      "tagline": "たまに現れて強く印象を残すイベント枠",
+      "description": "あなたは、常に近くにいるよりも、来た時に空気を変えるタイプです。距離があるからこそ一言の印象が残り、早川にとって少し気になる存在になります。"
+    },
+    {
+      "id": "sunflower",
+      "name": "早川のひまわり",
+      "primary": "charm",
+      "secondary": ["support"],
+      "tagline": "素直な反応で早川の明るさを増幅する陽だまり枠",
+      "description": "あなたは、早川の明るい部分にまっすぐ反応できるタイプです。褒め方や喜び方が重くなりすぎず、早川が自然に笑いやすい空気を作れます。"
+    },
+    {
+      "id": "passport",
+      "name": "早川のパスポート",
+      "primary": "freedom",
+      "secondary": ["spark"],
+      "tagline": "新しいノリや企画へ一緒に飛び込む同行者枠",
+      "description": "あなたは、早川が新しい流れに行こうとした時、止めるより先に一緒に飛び込めるタイプです。変化をイベントとして楽しめるので、配信の冒険感を強くできます。"
+    },
+    {
+      "id": "night_watch",
+      "name": "早川の夜警",
+      "primary": "support",
+      "secondary": ["distance"],
+      "tagline": "静かに見守りながら必要な時だけ支える守り枠",
+      "description": "あなたは、目立つ支え方よりも、必要な時にだけそっと助ける関わり方が似合います。早川に干渉しすぎず、でもちゃんと見ている安心感があります。"
+    }
+  ],
+  "fallback": {
+    "name": "早川の特別リスナー",
+    "tagline": "まだ名前のついていない相性枠",
+    "description": "あなたは、早川と一言では分類しきれない相性を持っています。強く合う部分と少しズレる部分の両方があり、その混ざり方が個性になっています。"
+  }
+}

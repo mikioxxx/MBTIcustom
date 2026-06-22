@@ -1,0 +1,18 @@
+{
+  "INTJ": { "baseScore": 70, "vector": { "vibe": 46, "freedom": 58, "charm": 48, "support": 70, "spark": 55, "distance": 72 }, "comment": "INTJのあなたは、早川の勢いを冷静に見ながらも、必要な時には軸を作れる相性です。" },
+  "INTP": { "baseScore": 73, "vector": { "vibe": 55, "freedom": 72, "charm": 52, "support": 58, "spark": 66, "distance": 70 }, "comment": "INTPのあなたは、早川の発想の飛び方を面白がりながら、独自の角度で会話を広げられます。" },
+  "ENTJ": { "baseScore": 68, "vector": { "vibe": 58, "freedom": 56, "charm": 50, "support": 72, "spark": 73, "distance": 52 }, "comment": "ENTJのあなたは、早川の自由さに方向性を与えられる一方、少し強く出すぎると火花も散ります。" },
+  "ENTP": { "baseScore": 84, "vector": { "vibe": 82, "freedom": 78, "charm": 60, "support": 48, "spark": 86, "distance": 54 }, "comment": "ENTPのあなたは、ENFP早川とノリや発想で噛み合いやすく、コメント欄でも一気に場を動かせる相性です。" },
+  "INFJ": { "baseScore": 82, "vector": { "vibe": 62, "freedom": 66, "charm": 74, "support": 76, "spark": 48, "distance": 78 }, "comment": "INFJのあなたは、早川の明るさの奥にある繊細さにも気づきやすく、深い安心感を作れます。" },
+  "INFP": { "baseScore": 86, "vector": { "vibe": 74, "freedom": 78, "charm": 76, "support": 66, "spark": 52, "distance": 68 }, "comment": "INFPのあなたは、ENFP早川の自由な感性に共鳴しやすく、言葉にしにくい魅力も拾える相性です。" },
+  "ENFJ": { "baseScore": 88, "vector": { "vibe": 80, "freedom": 70, "charm": 78, "support": 82, "spark": 62, "distance": 58 }, "comment": "ENFJのあなたは、早川を明るく支えながら周りも巻き込める、かなり近い温度の相性です。" },
+  "ENFP": { "baseScore": 90, "vector": { "vibe": 88, "freedom": 86, "charm": 72, "support": 54, "spark": 80, "distance": 56 }, "comment": "ENFP同士のあなたは、早川とテンションの波長が合いやすく、盛り上がる時の加速力が強い相性です。" },
+  "ISTJ": { "baseScore": 58, "vector": { "vibe": 38, "freedom": 42, "charm": 48, "support": 78, "spark": 36, "distance": 76 }, "comment": "ISTJのあなたは、早川の自由さに驚きつつも、安定した見守り役として頼もしさを出せます。" },
+  "ISFJ": { "baseScore": 76, "vector": { "vibe": 58, "freedom": 54, "charm": 72, "support": 84, "spark": 42, "distance": 74 }, "comment": "ISFJのあなたは、早川の変化をやさしく受け止め、疲れた時に帰ってこられる空気を作れます。" },
+  "ESTJ": { "baseScore": 57, "vector": { "vibe": 44, "freedom": 38, "charm": 44, "support": 76, "spark": 58, "distance": 50 }, "comment": "ESTJのあなたは、早川を現実側へ戻す力があります。相性は少しクセがあり、噛み合うと強い関係です。" },
+  "ESFJ": { "baseScore": 83, "vector": { "vibe": 78, "freedom": 62, "charm": 80, "support": 84, "spark": 58, "distance": 60 }, "comment": "ESFJのあなたは、早川の場作りを自然に助けられる、配信空間とのなじみが良い相性です。" },
+  "ISTP": { "baseScore": 65, "vector": { "vibe": 44, "freedom": 66, "charm": 44, "support": 56, "spark": 62, "distance": 82 }, "comment": "ISTPのあなたは、早川に近づきすぎず、でも面白い時はちゃんと反応できる絶妙な距離感があります。" },
+  "ISFP": { "baseScore": 80, "vector": { "vibe": 72, "freedom": 80, "charm": 74, "support": 58, "spark": 54, "distance": 70 }, "comment": "ISFPのあなたは、早川の自由な魅力を感覚で受け取れるタイプです。自然体のまま相性が育ちます。" },
+  "ESTP": { "baseScore": 78, "vector": { "vibe": 82, "freedom": 72, "charm": 58, "support": 42, "spark": 86, "distance": 44 }, "comment": "ESTPのあなたは、早川の場を一気に熱くできる相性です。距離が近いほど刺激も強くなります。" },
+  "ESFP": { "baseScore": 92, "vector": { "vibe": 92, "freedom": 84, "charm": 78, "support": 48, "spark": 84, "distance": 48 }, "comment": "ESFPのあなたは、早川と空気を明るくする力が噛み合いやすく、配信向きの神相性です。" }
+}
