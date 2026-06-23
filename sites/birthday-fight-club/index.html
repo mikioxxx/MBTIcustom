@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="6つの誕生日占いを、あなた自身の回答で答え合わせ。一番あなたを言い当てる占術を決める診断サイト。"
+    />
+    <title>誕生日占い FIGHT CLUB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600;700;800&family=Zen+Old+Mincho:wght@500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="title-backdrop" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="誕生日占いファイトクラブ トップ">
+        <span>B.F.C.</span>
+        <strong>誕生日占い<br />FIGHT CLUB</strong>
+      </a>
+      <p>6 DIVINATIONS. ONE WINNER.</p>
+    </header>
+
+    <main>
+      <section class="view intro-view" id="introView">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="round-label">TODAY'S MAIN EVENT</p>
+            <h1>
+              <span>誕生日占い</span>
+              <em>FIGHT</em>
+              <strong>CLUB</strong>
+            </h1>
+            <p class="hero-lead">
+              同じ誕生日を、6つの占いに読ませる。<br />
+              最後に判定するのは、占い師ではなく<strong>あなた自身。</strong>
+            </p>
+          </div>
+
+          <aside class="fight-poster" aria-label="参加する6つの占術">
+            <p>THE CONTENDERS</p>
+            <ol>
+              <li><span>01</span>数秘術</li>
+              <li><span>02</span>西洋占星術</li>
+              <li><span>03</span>四柱推命</li>
+              <li><span>04</span>九星気学</li>
+              <li><span>05</span>宿曜占星術</li>
+              <li><span>06</span>干支占い</li>
+            </ol>
+          </aside>
+        </div>
+
+        <form class="birth-card" id="birthForm">
+          <div>
+            <span class="step-number">01</span>
+            <div>
+              <p class="form-kicker">ENTRY</p>
+              <h2>あなたの生年月日</h2>
+              <p>出生時刻・出生地・氏名は必要ありません。</p>
+            </div>
+          </div>
+          <fieldset class="birth-picker">
+            <legend>生年月日</legend>
+            <div class="birth-selects">
+              <label class="picker-unit">
+                <span class="sr-only">年</span>
+                <select id="birthYear" name="birthYear" required>
+                  <option value="">年</option>
+                </select>
+                <b>年</b>
+              </label>
+              <label class="picker-unit">
+                <span class="sr-only">月</span>
+                <select id="birthMonth" name="birthMonth" required>
+                  <option value="">月</option>
+                </select>
+                <b>月</b>
+              </label>
+              <label class="picker-unit">
+                <span class="sr-only">日</span>
+                <select id="birthDay" name="birthDay" required>
+                  <option value="">日</option>
+                </select>
+                <b>日</b>
+              </label>
+            </div>
+          </fieldset>
+          <p class="form-error" id="formError" role="alert"></p>
+          <button class="fight-button" type="submit">
+            <span>6つの予言を見る</span>
+            <b>ENTER THE RING →</b>
+          </button>
+        </form>
+
+        <p class="disclaimer">
+          本サイトは各占術の考え方をもとにしたエンターテインメント向け簡易診断です。
+        </p>
+      </section>
+
+      <section class="view contenders-view is-hidden" id="contendersView">
+        <div class="section-head">
+          <div>
+            <p class="round-label">PRE-FIGHT READING</p>
+            <h2>6つの占いが、<br />あなたをこう読んだ。</h2>
+          </div>
+          <div class="birth-stamp">
+            <span>BORN</span>
+            <strong id="birthDateLabel"></strong>
+          </div>
+        </div>
+
+        <div class="contender-grid" id="contenderGrid"></div>
+
+        <div class="next-match-card">
+          <div>
+            <span class="step-number">02</span>
+            <div>
+              <p class="form-kicker">FACT CHECK</p>
+              <h2>本人による答え合わせ</h2>
+              <p>12のシチュエーションで、6つの占いとの一致度を採点します。</p>
+            </div>
+          </div>
+          <button class="fight-button" id="startQuizButton" type="button">
+            <span>判定を始める</span>
+            <b>START 12 ROUNDS →</b>
+          </button>
+        </div>
+      </section>
+
+      <section class="view quiz-view is-hidden" id="quizView">
+        <div class="quiz-topline">
+          <button class="text-button" id="quitQuizButton" type="button">← 出場者一覧へ</button>
+          <div>
+            <span id="questionCounter">ROUND 01 / 12</span>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
+        </div>
+
+        <article class="question-card">
+          <p class="round-label" id="questionAxis">ACTION / 行動力</p>
+          <span class="question-number" id="questionNumber">01</span>
+          <h2 id="questionText"></h2>
+          <p>考えすぎず、普段の自分に近いものを選んでください。</p>
+          <div class="answer-grid" id="answerGrid"></div>
+        </article>
+
+        <button class="text-button quiz-back" id="previousButton" type="button">← 前の質問</button>
+      </section>
+
+      <section class="view result-view is-hidden" id="resultView">
+        <div class="winner-hero">
+          <p class="round-label">OFFICIAL DECISION</p>
+          <p class="winner-kicker">あなたを最も言い当てた占いは</p>
+          <div class="winner-mark" id="winnerMark">✦</div>
+          <img class="winner-image" id="winnerImage" alt="" />
+          <h2 id="winnerName"></h2>
+          <div class="winner-score">
+            <strong id="winnerScore">0</strong><span>% MATCH</span>
+          </div>
+          <p class="winner-reason" id="winnerReason"></p>
+          <p class="winner-reading" id="winnerReading"></p>
+        </div>
+
+        <section class="ranking-section">
+          <div class="section-title-row">
+            <div>
+              <p class="form-kicker">FINAL SCORECARD</p>
+              <h2>全占術ランキング</h2>
+            </div>
+            <span class="chart-legend"><i class="legend-fortune"></i>占い予測 <i class="legend-user"></i>本人回答</span>
+          </div>
+          <div class="ranking-list" id="rankingList"></div>
+        </section>
+
+        <section class="profile-section">
+          <div class="section-title-row">
+            <div>
+              <p class="form-kicker">YOUR ANSWERS</p>
+              <h2>本人証言プロファイル</h2>
+            </div>
+          </div>
+          <div class="profile-bars" id="profileBars"></div>
+        </section>
+
+        <div class="result-actions">
+          <button class="fight-button" id="retryButton" type="button">
+            <span>別の誕生日で再戦</span>
+            <b>NEW MATCH →</b>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>BIRTHDAY FIGHT CLUB</span>
+      <p>占いに自分を決めさせない。自分で、当たっている占いを決める。</p>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
