@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="生年月日のUNIX日数を素因数分解し、機械時代の数秘暦として本質と今日の運勢を読む診断サイト。"
+    />
+    <title>UNIX素因数暦易</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260624-character" />
+  </head>
+  <body>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Machine age divination</p>
+          <h1>UNIX素因数暦易</h1>
+          <p class="lead">
+            エポックから刻まれたUNIX時間を根源数とし、日付鑑定ではUNIX日数を素因数分解して本質と今日の暦注を読む、根拠は正確で解釈はあやしい機械時代の数秘暦。
+          </p>
+        </div>
+        <figure class="hero-visual">
+          <img src="./イメージキャラ.png" alt="UNIX素因数暦易のイメージキャラクター" />
+        </figure>
+      </section>
+
+      <section class="panel input-panel" aria-labelledby="inputHeading">
+        <div>
+          <p class="section-kicker">Birth integer</p>
+          <h2 id="inputHeading">あなたのUNIX日数を読む</h2>
+        </div>
+        <form class="birth-form" id="birthForm">
+          <label>
+            <span>生年月日</span>
+            <input id="birthDate" type="date" required />
+          </label>
+          <button type="submit">素因数を読む</button>
+        </form>
+      </section>
+
+      <section class="panel calendar-panel" aria-labelledby="calendarHeading">
+        <div class="calendar-heading">
+          <div>
+            <p class="section-kicker">Prime calendar</p>
+            <h2 id="calendarHeading">今月の素因数暦</h2>
+          </div>
+          <div class="calendar-actions" aria-label="月の切り替え">
+            <button type="button" id="prevMonth" aria-label="前の月">‹</button>
+            <strong id="calendarTitle"></strong>
+            <button type="button" id="nextMonth" aria-label="次の月">›</button>
+          </div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <div id="calendarDetail"></div>
+      </section>
+
+      <section class="result-layout">
+        <article class="panel today-panel" id="todayPanel" aria-labelledby="todayHeading">
+          <p class="section-kicker">Today's calendar</p>
+          <h2 id="todayHeading">今日の暦注</h2>
+          <div id="todayContent"></div>
+        </article>
+
+        <article class="panel personal-panel is-hidden" id="personalPanel" aria-labelledby="personalHeading">
+          <p class="section-kicker">Personal reading</p>
+          <h2 id="personalHeading">個人鑑定</h2>
+          <div id="personalContent"></div>
+        </article>
+
+        <article class="panel resonance-panel is-hidden" id="resonancePanel" aria-labelledby="resonanceHeading">
+          <p class="section-kicker">Resonance</p>
+          <h2 id="resonanceHeading">今日との共鳴</h2>
+          <div id="resonanceContent"></div>
+        </article>
+      </section>
+
+      <section class="panel doctrine-panel">
+        <p class="section-kicker">Doctrine</p>
+        <h2>根源数と日付鑑定</h2>
+        <p>
+          UNIX素因数暦易では、秒単位のUNIX時間を暦の根源数とする。ただし生年月日や日々の暦名は日付単位で読むため、
+          鑑定にはUNIX日数を用いる。秒単位のUNIX時間は、投稿、配信開始、出来事など「瞬間」を読む時に開く数である。
+        </p>
+      </section>
+
+      <section class="panel doctrine-panel">
+        <p class="section-kicker">Doctrine</p>
+        <h2>プレ・エポック民について</h2>
+        <p>
+          1970年以前に生まれた者は、本来UNIX素因数暦易には存在しないはずの負値保持者である。ただし鑑定では絶対値を用い、
+          2038年の大桁尽で1901年へ巻き戻った単長世界の先史人類として読む。
+        </p>
+      </section>
+    </main>
+    <script src="app.js?v=20260624-character" type="module"></script>
+  </body>
+</html>
