@@ -454,6 +454,18 @@ button {
   line-height: 1.2;
 }
 
+.day-auspice {
+  width: fit-content;
+  padding: 3px 7px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: rgba(8, 13, 12, 0.48);
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
 .calendar-detail {
   display: grid;
   gap: 12px;
@@ -727,6 +739,58 @@ button {
   display: block;
   color: var(--red);
   margin-bottom: 6px;
+}
+
+.auspice-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 52%),
+    rgba(6, 16, 13, 0.7);
+}
+
+.auspice-card span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.auspice-card strong {
+  font-family: "Shippori Mincho", "Noto Sans JP", serif;
+  font-size: clamp(1.55rem, 4vw, 2.35rem);
+  line-height: 1;
+}
+
+.auspice-card p {
+  grid-column: 1 / -1;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.auspice-great {
+  color: #f3c65f;
+}
+
+.auspice-good {
+  color: #6fffcd;
+}
+
+.auspice-mixed {
+  color: #a8c3ff;
+}
+
+.auspice-caution {
+  color: #ff9f7d;
+}
+
+.auspice-flat {
+  color: #c6d2cc;
 }
 
 .back-to-menu {

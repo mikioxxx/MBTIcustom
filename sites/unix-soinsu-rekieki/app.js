@@ -53,6 +53,10 @@ const DAY_ORACLES = {
     key: "prime",
     label: "素数日",
     title: "独歩日",
+    auspice: "孤高吉",
+    auspiceShort: "孤吉",
+    auspiceTone: "good",
+    auspiceText: "群れずに進むほど運が立つ。単独判断、初動、決断に強い。",
     summary: "人に合わせるより、自分の判断で進む日。ひとり作業や決断に向く。無理に場に合わせなくてよい。",
     good: ["単独作業", "初投稿", "決断", "余白を作る"],
     bad: ["無理な同調", "根回しのしすぎ"],
@@ -62,6 +66,10 @@ const DAY_ORACLES = {
     key: "abundant",
     label: "繁日",
     title: "多縁日",
+    auspice: "大吉",
+    auspiceShort: "大吉",
+    auspiceTone: "great",
+    auspiceText: "縁が広がり、予定や情報が集まる。人を介した動きに強い。",
     summary: "連絡や予定が増えやすい日。人とのやり取り、紹介、共同作業に向く。抱え込みすぎには注意。",
     good: ["連絡整理", "予定調整", "紹介", "共同作業"],
     bad: ["抱え込み", "未返信の放置"],
@@ -71,6 +79,10 @@ const DAY_ORACLES = {
     key: "two",
     label: "双日",
     title: "対話日",
+    auspice: "吉",
+    auspiceShort: "吉",
+    auspiceTone: "good",
+    auspiceText: "確認、相談、和解に吉。ひとりで抱えず、往復で整える。",
     summary: "相談や確認で流れが整う日。ひとりで決めるより、誰かと話すと答えが見つかりやすい。",
     good: ["相談", "和解", "ペア作業", "確認"],
     bad: ["独断", "曖昧な約束"],
@@ -80,6 +92,10 @@ const DAY_ORACLES = {
     key: "three",
     label: "言日",
     title: "言霊日",
+    auspice: "吉凶",
+    auspiceShort: "吉凶",
+    auspiceTone: "mixed",
+    auspiceText: "発信は吉、余計な一言は凶。言葉の扱いで運が大きく変わる。",
     summary: "言葉にしたことが残りやすい日。投稿、告知、メモ、命名に向く。余計な一言には注意。",
     good: ["投稿", "告知", "メモ", "命名"],
     bad: ["言いっぱなし", "余計な一言"],
@@ -89,6 +105,10 @@ const DAY_ORACLES = {
     key: "five",
     label: "変日",
     title: "変化日",
+    auspice: "中吉",
+    auspiceShort: "中吉",
+    auspiceTone: "good",
+    auspiceText: "小さな変更に吉。移動、切り替え、習慣の更新で流れが開く。",
     summary: "いつもの流れを少し変える日。移動、買い替え、習慣の切り替えに向く。全部を一気に変えなくてよい。",
     good: ["移動", "買い替え", "模様替え", "習慣変更"],
     bad: ["惰性の継続", "急な全変更"],
@@ -98,6 +118,10 @@ const DAY_ORACLES = {
     key: "strange",
     label: "異日",
     title: "異兆日",
+    auspice: "小凶",
+    auspiceShort: "小凶",
+    auspiceTone: "caution",
+    auspiceText: "違和感が先に立つ。決断より観察、断定より保留が身を守る。",
     summary: "いつもと違う兆しに気づきやすい日。初めての場所、調査、保留に向く。すぐ決めつけない方がよい。",
     good: ["調査", "観察", "初見の場所", "保留"],
     bad: ["早合点", "雑な分類"],
@@ -107,6 +131,10 @@ const DAY_ORACLES = {
     key: "plain",
     label: "平因日",
     title: "整因日",
+    auspice: "平",
+    auspiceShort: "平",
+    auspiceTone: "flat",
+    auspiceText: "大きく動かず足場を整える日。片づけ、準備、見直しが後の吉を呼ぶ。",
     summary: "派手な動きより、片づけ・準備・見直しに向く日。後回しにしていたことを整えると、次の流れが入りやすくなる。",
     good: ["整頓", "復習", "ルーティン", "下準備"],
     bad: ["派手な賭け", "焦った方向転換"],
@@ -221,6 +249,7 @@ function renderToday() {
       <span>今日の暦名</span>
       <strong>${primary.title}</strong>
     </div>
+    ${renderAuspiceCard(primary)}
     <div class="number-stack compact-stack">
       <span>${formatDate(today)} のUNIX日数</span>
       <strong>${formatNumber(days)}</strong>
@@ -254,6 +283,7 @@ function renderCalendar() {
       <button class="calendar-day ${stateClass}" type="button" data-date="${dateKey}" data-year="${year}" data-month="${month}" data-day="${day}">
         <span class="day-number">${day}</span>
         <span class="day-label">${primary.title}</span>
+        <span class="day-auspice auspice-${primary.auspiceTone}">${primary.auspiceShort ?? primary.auspice}</span>
       </button>
     `);
   }
@@ -291,6 +321,7 @@ function renderCalendarDetail(year, month, day) {
         <span>${year}-${pad(month)}-${pad(day)} の暦名</span>
         <strong>${primary.title}</strong>
       </div>
+      ${renderAuspiceCard(primary)}
       <div class="number-stack compact-stack">
         <span>暦名の根</span>
         <strong>UNIX日数 ${formatNumber(days)}</strong>
@@ -431,6 +462,16 @@ function getPrimaryOmen(omens, reading) {
   const factorScore = reading.factors.reduce((total, factor) => total + factor.prime * factor.exponent, 0);
   const index = Math.abs(factorScore + reading.largestPrime + reading.divisorCount) % omens.length;
   return omens[index];
+}
+
+function renderAuspiceCard(omen) {
+  return `
+    <div class="auspice-card auspice-${omen.auspiceTone}">
+      <span>吉凶</span>
+      <strong>${omen.auspice}</strong>
+      <p>${omen.auspiceText}</p>
+    </div>
+  `;
 }
 
 function renderDailyFortune(omens, reading, heading = "本日の暦注") {
