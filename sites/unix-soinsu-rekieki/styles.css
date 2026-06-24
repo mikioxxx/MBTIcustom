@@ -203,6 +203,59 @@ button {
   font-weight: 900;
 }
 
+.purpose-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: -8px 0 20px;
+}
+
+.purpose-nav a {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 10px;
+  align-items: center;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(111, 255, 205, 0.2);
+  border-radius: 8px;
+  color: var(--text);
+  background:
+    linear-gradient(135deg, rgba(111, 255, 205, 0.08), transparent 54%),
+    rgba(237, 247, 239, 0.045);
+  text-decoration: none;
+}
+
+.purpose-nav a:hover {
+  border-color: rgba(243, 198, 95, 0.54);
+  background:
+    linear-gradient(135deg, rgba(243, 198, 95, 0.12), transparent 54%),
+    rgba(237, 247, 239, 0.06);
+}
+
+.purpose-nav span {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(243, 198, 95, 0.36);
+  border-radius: 999px;
+  color: var(--amber);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-weight: 900;
+}
+
+.purpose-nav strong {
+  color: var(--green);
+  line-height: 1.2;
+}
+
+.purpose-nav small {
+  color: var(--muted);
+  font-weight: 800;
+}
+
 .calendar-panel {
   display: grid;
   gap: 16px;
@@ -462,6 +515,50 @@ button {
     rgba(237, 247, 239, 0.035);
 }
 
+.rare-oracle {
+  border-color: rgba(243, 198, 95, 0.42);
+  background:
+    linear-gradient(135deg, rgba(243, 198, 95, 0.12), transparent 48%),
+    rgba(237, 247, 239, 0.035);
+}
+
+.multiple-days {
+  display: grid;
+  gap: 8px;
+  padding: 11px;
+  border: 1px solid rgba(243, 198, 95, 0.22);
+  border-radius: 8px;
+  background: rgba(6, 16, 13, 0.62);
+}
+
+.multiple-days > span {
+  color: var(--amber);
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.multiple-days ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.multiple-days li {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  color: var(--text);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 0.88rem;
+}
+
+.multiple-days li strong {
+  color: var(--green);
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+
 .reading-list {
   display: grid;
   gap: 10px;
@@ -550,6 +647,7 @@ button {
 
   .input-panel,
   .birth-form,
+  .purpose-nav,
   .result-layout {
     grid-template-columns: 1fr;
   }

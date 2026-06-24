@@ -9,6 +9,7 @@ const els = {
   todayContent: document.querySelector("#todayContent"),
   personalPanel: document.querySelector("#personalPanel"),
   personalContent: document.querySelector("#personalContent"),
+  resonanceHeading: document.querySelector("#resonanceHeading"),
   resonancePanel: document.querySelector("#resonancePanel"),
   resonanceContent: document.querySelector("#resonanceContent")
 };
@@ -18,6 +19,9 @@ const calendarState = {
   year: null,
   month: null,
   selected: null
+};
+const personalState = {
+  reading: null
 };
 
 const FACTOR_READINGS = {
@@ -103,31 +107,31 @@ const DAY_ORACLES = {
 const RESONANCE_ORACLES = {
   関係共鳴: {
     title: "縁線共鳴",
-    summary: "今日の暦とあなたの数に双因子が通っている。人との往復、確認、調整によって運が開きやすい。",
+    summary: "選んだ日の暦とあなたの数に双因子が通っている。人との往復、確認、調整によって運が開きやすい。",
     good: ["返信", "相談", "共同作業"],
     bad: ["独断", "放置"]
   },
   発信共鳴: {
     title: "言線共鳴",
-    summary: "今日の暦とあなたの数に言因子が通っている。言葉にしたことが残りやすく、発信や記録に向く。",
+    summary: "選んだ日の暦とあなたの数に言因子が通っている。言葉にしたことが残りやすく、発信や記録に向く。",
     good: ["投稿", "メモ", "説明"],
     bad: ["曖昧な発言", "言い過ぎ"]
   },
   変化共鳴: {
     title: "転線共鳴",
-    summary: "今日の暦とあなたの数に変因子が通っている。場所、道具、予定を少し動かすことで流れが変わる。",
+    summary: "選んだ日の暦とあなたの数に変因子が通っている。場所、道具、予定を少し動かすことで流れが変わる。",
     good: ["移動", "切り替え", "買い替え"],
     bad: ["惰性", "急な全変更"]
   },
   異物共鳴: {
     title: "異線共鳴",
-    summary: "今日の暦とあなたの数に大きな異物因子が混ざる。説明しきれない偶然を、すぐに片付けない方がよい。",
+    summary: "選んだ日の暦とあなたの数に大きな異物因子が混ざる。説明しきれない偶然を、すぐに片付けない方がよい。",
     good: ["観察", "調査", "保留"],
     bad: ["早合点", "雑な決めつけ"]
   },
   微弱共鳴: {
     title: "孤線共鳴",
-    summary: "今日の暦とあなたの数の重なりは薄い。外の流れに乗るより、自分のリズムを守る方が整いやすい。",
+    summary: "選んだ日の暦とあなたの数の重なりは薄い。外の流れに乗るより、自分のリズムを守る方が整いやすい。",
     good: ["単独作業", "休息", "整理"],
     bad: ["無理な同調", "予定の詰め込み"]
   }
@@ -168,8 +172,8 @@ function renderToday() {
       <strong>${formatNumber(days)}</strong>
     </div>
     ${renderFactorLine(reading)}
-    <div class="tag-row">${omens.map((omen) => `<span>${omen.label}</span>`).join("")}</div>
-    ${renderDailyFortune(omens, reading, "日付鑑定")}
+    <div class="tag-row"><span>${primary.label}</span></div>
+    ${renderDailyFortune([primary], reading, "日付鑑定")}
   `;
 }
 
@@ -218,6 +222,7 @@ function handleCalendarClick(event) {
   if (!button) return;
   calendarState.selected = button.dataset.date;
   renderCalendar();
+  renderSelectedResonance();
 }
 
 function renderCalendarDetail(year, month, day) {
@@ -236,8 +241,8 @@ function renderCalendarDetail(year, month, day) {
         <strong>UNIX日数 ${formatNumber(days)}</strong>
       </div>
       ${renderFactorLine(reading)}
-      <div class="tag-row">${omens.map((omen) => `<span>${omen.label}</span>`).join("")}</div>
-      ${renderDailyFortune(omens, reading, "日付鑑定")}
+      <div class="tag-row"><span>${primary.label}</span></div>
+      ${renderDailyFortune([primary], reading, "日付鑑定")}
     </div>
   `;
 }
@@ -247,10 +252,7 @@ function renderPersonal() {
   const days = getUnixDays(year, month, day);
   const reading = buildNumberReading(days);
   const type = getCoreType(reading);
-  const today = getJstDateParts();
-  const todayDays = getUnixDays(today.year, today.month, today.day);
-  const todayReading = buildNumberReading(todayDays);
-  const resonance = buildResonance(reading, todayReading);
+  personalState.reading = reading;
 
   els.personalPanel.classList.remove("is-hidden");
   els.resonancePanel.classList.remove("is-hidden");
@@ -267,19 +269,35 @@ function renderPersonal() {
       <div><span>最大素因数</span><strong>${formatNumber(reading.largestPrime)}</strong></div>
       <div><span>暦因子型</span><strong>${type.label}</strong></div>
     </div>
+    ${renderPrimeBirthdayOracle(reading)}
     ${renderPersonalOracle(reading, type)}
   `;
 
+  renderSelectedResonance();
+  els.personalPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function renderSelectedResonance() {
+  if (!personalState.reading) return;
+  const [year, month, day] = calendarState.selected.split("-").map(Number);
+  const targetDays = getUnixDays(year, month, day);
+  const targetReading = buildNumberReading(targetDays);
+  const resonance = buildResonance(personalState.reading, targetReading);
+  els.resonanceHeading.textContent = `${year}-${pad(month)}-${pad(day)} との共鳴`;
+  els.resonancePanel.classList.remove("is-hidden");
   els.resonanceContent.innerHTML = `
+    <div class="number-stack">
+      <span>選んだ日</span>
+      <strong>${year}-${pad(month)}-${pad(day)}</strong>
+    </div>
     <div class="number-stack">
       <span>最大公約数</span>
       <strong>${formatNumber(resonance.gcd)}</strong>
     </div>
     ${renderFactorLine(resonance)}
-    <div class="tag-row">${resonance.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+    <div class="tag-row"><span>${resonance.primaryTag}</span></div>
     ${renderResonanceOracle(resonance)}
   `;
-  els.personalPanel.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function buildNumberReading(raw) {
@@ -390,6 +408,55 @@ function getUniqueItems(items) {
   return [...new Set(items)];
 }
 
+function renderPrimeBirthdayOracle(reading) {
+  if (!isPrimeReading(reading)) return "";
+  const today = getJstDateParts();
+  const matchingDays = getUpcomingMultipleDays(reading.abs, today, 1);
+  const list = matchingDays.length
+    ? matchingDays.map((item) => `<li><span>${item.date}</span><strong>${item.title}</strong></li>`).join("")
+    : `<li><span>未検出</span><strong>該当日なし</strong></li>`;
+  return `
+    <div class="daily-oracle rare-oracle">
+      <div class="oracle-head">
+        <span>素数日生まれ</span>
+        <strong>共鳴しにくい独歩型</strong>
+      </div>
+      <p>
+        あなたのUNIX日数 ${formatNumber(reading.abs)} は素数である。多くの日とは公約数を持ちにくいため、
+        選んだ日との共鳴値が小さく出やすい。これは運が弱いというより、暦に混ざりにくく、自分の歩幅が残りやすい性質として読む。
+      </p>
+      <div class="multiple-days">
+        <span>次に訪れる倍数日</span>
+        <ul>${list}</ul>
+      </div>
+      <p class="oracle-note">
+        倍数日は少ないが、その日はあなたの素数が暦に直接触れる日である。遠い日付として現れるほど、普段は無理に合わせず独歩日として進む方がよい。
+      </p>
+    </div>
+  `;
+}
+
+function isPrimeReading(reading) {
+  return reading.abs > 1 && reading.factors.length === 1 && reading.factors[0].exponent === 1;
+}
+
+function getUpcomingMultipleDays(prime, fromDate, count) {
+  const start = Math.abs(getUnixDays(fromDate.year, fromDate.month, fromDate.day));
+  const first = Math.ceil(start / prime) * prime;
+  const matches = [];
+  for (let index = 0; index < count; index += 1) {
+    const unixDays = first + prime * index;
+    const date = getDateFromUnixDays(unixDays);
+    const reading = buildNumberReading(unixDays);
+    const primary = getPrimaryOmen(getCalendarOmens(reading), reading);
+    matches.push({
+      date: `${date.year}-${pad(date.month)}-${pad(date.day)}`,
+      title: primary.title
+    });
+  }
+  return matches;
+}
+
 function renderPersonalOracle(reading, type) {
   const density = getDensityOracle(reading);
   const primeOracle = getLargestPrimeOracle(reading);
@@ -427,7 +494,7 @@ function getDensityOracle(reading) {
     return {
       title: "大繁型",
       summary: "約縁数が非常に多く、人、予定、役割、偶然が集まりやすい。多くのものを受け取れる反面、境界が曖昧になりやすい。",
-      action: "今日は増えた話を全部拾うより、残す縁と流す縁を分けるとよい。"
+      action: "増えた話を全部拾うより、残す縁と流す縁を分けるとよい。"
     };
   }
   if (reading.divisorCount >= 64) {
@@ -445,9 +512,9 @@ function getDensityOracle(reading) {
     };
   }
   return {
-    title: "孤因型",
-    summary: "約縁数が少なく、混ざりにくい芯がある。周囲に合わせるより、少数の確かな判断で進む方が強い。",
-    action: "今日は説明しすぎず、必要な相手にだけ意図を伝えるとよい。"
+      title: "孤因型",
+      summary: "約縁数が少なく、混ざりにくい芯がある。周囲に合わせるより、少数の確かな判断で進む方が強い。",
+    action: "説明しすぎず、必要な相手にだけ意図を伝えるとよい。"
   };
 }
 
@@ -467,14 +534,15 @@ function buildResonance(personal, today) {
   if (reading.factorMap.has(5)) tags.push("変化共鳴");
   if (reading.largestPrime >= 97) tags.push("異物共鳴");
   if (!tags.length) tags.push("微弱共鳴");
+  const primaryTag = getPrimaryResonanceTag(tags, reading);
   const message = value <= 1
-    ? "今日との共通因子はほぼない。混ざらない日なので、自分の直感を単独で進める方がよい。"
-    : `あなたのUNIX日数と今日のUNIX日数は ${formatNumber(value)} で割り切れる。共通因子が大きいほど、今日の暦注はあなたの本質因子に触れやすい。`;
-  return { ...reading, gcd: value, tags, message };
+    ? "選んだ日との共通因子はほぼない。混ざらない日なので、自分の直感を単独で進める方がよい。"
+    : `あなたのUNIX日数と選んだ日のUNIX日数は ${formatNumber(value)} で割り切れる。共通因子が大きいほど、その日の暦注はあなたの本質因子に触れやすい。`;
+  return { ...reading, gcd: value, tags, primaryTag, message };
 }
 
 function renderResonanceOracle(resonance) {
-  const omens = resonance.tags.map((tag) => RESONANCE_ORACLES[tag]).filter(Boolean);
+  const omens = [RESONANCE_ORACLES[resonance.primaryTag]].filter(Boolean);
   const title = omens.map((omen) => omen.title).join("・");
   const summary = omens.map((omen) => omen.summary).join("");
   const good = getUniqueItems(omens.flatMap((omen) => omen.good)).slice(0, 5);
@@ -482,7 +550,7 @@ function renderResonanceOracle(resonance) {
   return `
     <div class="daily-oracle reading-oracle">
       <div class="oracle-head">
-        <span>今日との共鳴診断</span>
+        <span>選んだ日との共鳴診断</span>
         <strong>${title}</strong>
       </div>
       <p>${resonance.message}${summary}</p>
@@ -496,9 +564,16 @@ function renderResonanceOracle(resonance) {
           <strong>${bad.join(" / ")}</strong>
         </div>
       </div>
-      <p class="oracle-note">共鳴値 ${formatNumber(resonance.gcd)}。日単位の共鳴が大きいほど、今日の暦注はあなた個人の因子に近いところで鳴る。</p>
+      <p class="oracle-note">共鳴値 ${formatNumber(resonance.gcd)}。日単位の共鳴が大きいほど、その日の暦注はあなた個人の因子に近いところで鳴る。</p>
     </div>
   `;
+}
+
+function getPrimaryResonanceTag(tags, reading) {
+  if (tags.length <= 1) return tags[0];
+  if (reading.largestPrime >= 97 && tags.includes("異物共鳴")) return "異物共鳴";
+  const order = ["発信共鳴", "変化共鳴", "関係共鳴", "微弱共鳴"];
+  return order.find((tag) => tags.includes(tag)) ?? tags[0];
 }
 
 function renderPreEpochNotice(reading) {
@@ -560,6 +635,15 @@ function getUnixDays(year, month, day) {
   const epoch = Date.UTC(1970, 0, 1);
   const target = Date.UTC(year, month - 1, day);
   return Math.floor((target - epoch) / 86400000);
+}
+
+function getDateFromUnixDays(days) {
+  const date = new Date(Date.UTC(1970, 0, 1) + days * 86400000);
+  return {
+    year: date.getUTCFullYear(),
+    month: date.getUTCMonth() + 1,
+    day: date.getUTCDate()
+  };
 }
 
 function getJstDateParts(date = new Date()) {

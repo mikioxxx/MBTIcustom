@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260624-character" />
+    <link rel="stylesheet" href="styles.css?v=20260624-purpose-ui" />
   </head>
   <body>
     <div class="grid-bg" aria-hidden="true"></div>
@@ -32,7 +32,25 @@
         </figure>
       </section>
 
-      <section class="panel input-panel" aria-labelledby="inputHeading">
+      <nav class="purpose-nav" aria-label="鑑定メニュー">
+        <a href="#birthReading">
+          <span>1</span>
+          <strong>誕生日を診る</strong>
+          <small>自分の性質</small>
+        </a>
+        <a href="#dayReading">
+          <span>2</span>
+          <strong>日を調べる</strong>
+          <small>今日・選んだ日</small>
+        </a>
+        <a href="#relationReading">
+          <span>3</span>
+          <strong>自分との相性</strong>
+          <small>選んだ日の共鳴</small>
+        </a>
+      </nav>
+
+      <section class="panel input-panel" id="birthReading" aria-labelledby="inputHeading">
         <div>
           <p class="section-kicker">Birth integer</p>
           <h2 id="inputHeading">あなたのUNIX日数を読む</h2>
@@ -46,7 +64,7 @@
         </form>
       </section>
 
-      <section class="panel calendar-panel" aria-labelledby="calendarHeading">
+      <section class="panel calendar-panel" id="dayReading" aria-labelledby="calendarHeading">
         <div class="calendar-heading">
           <div>
             <p class="section-kicker">Prime calendar</p>
@@ -62,7 +80,7 @@
         <div id="calendarDetail"></div>
       </section>
 
-      <section class="result-layout">
+      <section class="result-layout" id="relationReading">
         <article class="panel today-panel" id="todayPanel" aria-labelledby="todayHeading">
           <p class="section-kicker">Today's calendar</p>
           <h2 id="todayHeading">今日の暦注</h2>
@@ -77,7 +95,7 @@
 
         <article class="panel resonance-panel is-hidden" id="resonancePanel" aria-labelledby="resonanceHeading">
           <p class="section-kicker">Resonance</p>
-          <h2 id="resonanceHeading">今日との共鳴</h2>
+          <h2 id="resonanceHeading">選んだ日との共鳴</h2>
           <div id="resonanceContent"></div>
         </article>
       </section>
@@ -100,6 +118,6 @@
         </p>
       </section>
     </main>
-    <script src="app.js?v=20260624-character" type="module"></script>
+    <script src="app.js?v=20260624-purpose-ui" type="module"></script>
   </body>
 </html>
