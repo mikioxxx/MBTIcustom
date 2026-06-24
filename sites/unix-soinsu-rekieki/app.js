@@ -13,7 +13,8 @@ const els = {
   personalContent: document.querySelector("#personalContent"),
   resonanceHeading: document.querySelector("#resonanceHeading"),
   resonancePanel: document.querySelector("#resonancePanel"),
-  resonanceContent: document.querySelector("#resonanceContent")
+  resonanceContent: document.querySelector("#resonanceContent"),
+  backToMenu: document.querySelector("#backToMenu")
 };
 
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
@@ -165,6 +166,12 @@ function init() {
     event.preventDefault();
     renderPersonal();
   });
+  window.addEventListener("scroll", updateBackToMenu, { passive: true });
+  updateBackToMenu();
+}
+
+function updateBackToMenu() {
+  els.backToMenu.classList.toggle("is-visible", window.scrollY > 420);
 }
 
 function setupBirthDateDial(today) {
