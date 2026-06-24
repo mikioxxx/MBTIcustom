@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="女性ライバー向けの相性診断用プロフィールデータ作成フォーム。ラブタイプと設問から提出用画像を生成します。"
+    />
+    <title>女性ライバー相性診断用データ作成</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="intro">
+        <p class="kicker">for female TikTok live creators</p>
+        <h1>女性ライバー相性診断用データ作成</h1>
+        <p class="lead">
+          ライバー本人のラブタイプと恋愛・連絡・デート観をもとに、リスナーが「好きな子との相性」として楽しめる診断用データを作成します。
+          結果はDMで送れる画像として出力されます。
+        </p>
+      </section>
+
+      <form class="panel profile-form" id="profileForm">
+        <section class="form-section">
+          <h2>基本情報</h2>
+          <div class="field-grid">
+            <label>
+              <span>ライバー名</span>
+              <input id="creatorName" type="text" maxlength="24" placeholder="例: みお" required />
+            </label>
+            <label>
+              <span>ラブタイプ</span>
+              <select id="loveType" required>
+                <option value="">選択してください</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="question-heading">
+            <h2>設問</h2>
+            <p>近いものを1つずつ選んでください。</p>
+          </div>
+          <div id="questions" class="questions"></div>
+        </section>
+
+        <div class="actions">
+          <button class="primary-button" type="submit">提出用画像を作る</button>
+          <button class="secondary-button" id="resetButton" type="button">リセット</button>
+        </div>
+      </form>
+
+      <section class="panel result-panel is-hidden" id="resultPanel" aria-live="polite">
+        <div class="result-copy">
+          <h2>提出用画像</h2>
+          <p>画像を保存してDMで送ってください。コードと数値が読めれば問題ありません。</p>
+        </div>
+        <div class="result-layout">
+          <img id="resultImage" alt="女性ライバー相性診断用データ画像" />
+          <div class="result-actions">
+            <button class="primary-button" id="downloadButton" type="button">画像を保存</button>
+            <button class="secondary-button" id="copyTextButton" type="button">内容をコピー</button>
+            <textarea id="resultText" readonly></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
