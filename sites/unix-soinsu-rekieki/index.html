@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260624-purpose-ui" />
+    <link rel="stylesheet" href="styles.css?v=20260624-calendar-colors" />
   </head>
   <body>
     <div class="grid-bg" aria-hidden="true"></div>
@@ -76,6 +76,15 @@
             <button type="button" id="nextMonth" aria-label="次の月">›</button>
           </div>
         </div>
+        <div class="calendar-legend" aria-label="暦名の色分け">
+          <span class="legend-prime">独歩日</span>
+          <span class="legend-abundant">多縁日</span>
+          <span class="legend-two">対話日</span>
+          <span class="legend-three">言霊日</span>
+          <span class="legend-five">変化日</span>
+          <span class="legend-strange">異兆日</span>
+          <span class="legend-plain">整因日</span>
+        </div>
         <div class="calendar-grid" id="calendarGrid"></div>
         <div id="calendarDetail"></div>
       </section>
@@ -118,6 +127,6 @@
         </p>
       </section>
     </main>
-    <script src="app.js?v=20260624-purpose-ui" type="module"></script>
+    <script src="app.js?v=20260624-calendar-colors" type="module"></script>
   </body>
 </html>

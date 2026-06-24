@@ -289,6 +289,78 @@ button {
   text-align: center;
 }
 
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calendar-legend span {
+  padding: 6px 9px;
+  border: 1px solid var(--omen-line, rgba(111, 255, 205, 0.2));
+  border-radius: 999px;
+  color: var(--omen-text, var(--text));
+  background: var(--omen-bg, rgba(237, 247, 239, 0.045));
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.legend-prime,
+.omen-prime {
+  --omen-bg: rgba(255, 255, 255, 0.075);
+  --omen-line: rgba(244, 249, 255, 0.34);
+  --omen-text: #f4f9ff;
+  --omen-glow: rgba(244, 249, 255, 0.16);
+}
+
+.legend-abundant,
+.omen-abundant {
+  --omen-bg: rgba(243, 198, 95, 0.11);
+  --omen-line: rgba(243, 198, 95, 0.36);
+  --omen-text: #f3c65f;
+  --omen-glow: rgba(243, 198, 95, 0.18);
+}
+
+.legend-two,
+.omen-two {
+  --omen-bg: rgba(111, 255, 205, 0.1);
+  --omen-line: rgba(111, 255, 205, 0.34);
+  --omen-text: #6fffcd;
+  --omen-glow: rgba(111, 255, 205, 0.16);
+}
+
+.legend-three,
+.omen-three {
+  --omen-bg: rgba(122, 164, 255, 0.12);
+  --omen-line: rgba(122, 164, 255, 0.38);
+  --omen-text: #a8c3ff;
+  --omen-glow: rgba(122, 164, 255, 0.18);
+}
+
+.legend-five,
+.omen-five {
+  --omen-bg: rgba(135, 217, 107, 0.12);
+  --omen-line: rgba(135, 217, 107, 0.38);
+  --omen-text: #a7e486;
+  --omen-glow: rgba(135, 217, 107, 0.18);
+}
+
+.legend-strange,
+.omen-strange {
+  --omen-bg: rgba(194, 132, 255, 0.13);
+  --omen-line: rgba(194, 132, 255, 0.4);
+  --omen-text: #d9b6ff;
+  --omen-glow: rgba(194, 132, 255, 0.2);
+}
+
+.legend-plain,
+.omen-plain {
+  --omen-bg: rgba(159, 179, 170, 0.1);
+  --omen-line: rgba(159, 179, 170, 0.3);
+  --omen-text: #c6d2cc;
+  --omen-glow: rgba(159, 179, 170, 0.14);
+}
+
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -312,8 +384,10 @@ button {
   align-content: start;
   min-height: 72px;
   padding: 9px;
-  border: 1px solid rgba(111, 255, 205, 0.16);
-  background: rgba(237, 247, 239, 0.045);
+  border: 1px solid var(--omen-line, rgba(111, 255, 205, 0.16));
+  background:
+    radial-gradient(circle at 12% 10%, var(--omen-glow, rgba(111, 255, 205, 0.08)), transparent 42%),
+    var(--omen-bg, rgba(237, 247, 239, 0.045));
   color: var(--text);
   text-align: left;
 }
@@ -337,7 +411,7 @@ button {
 }
 
 .day-label {
-  color: var(--amber);
+  color: var(--omen-text, var(--amber));
   font-family: "Shippori Mincho", "Noto Sans JP", serif;
   font-size: clamp(0.78rem, 1.4vw, 1rem);
   line-height: 1.2;

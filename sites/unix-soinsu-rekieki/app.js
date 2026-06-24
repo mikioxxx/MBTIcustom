@@ -47,57 +47,64 @@ const FACTOR_READINGS = {
 
 const DAY_ORACLES = {
   prime: {
+    key: "prime",
     label: "素数日",
     title: "独歩日",
-    summary: "どの流れにも割り切られない日。合わせるより、自分の歩幅で進む方が暦に合う。",
+    summary: "人に合わせるより、自分の判断で進む日。ひとり作業や決断に向く。無理に場に合わせなくてよい。",
     good: ["単独作業", "初投稿", "決断", "余白を作る"],
     bad: ["無理な同調", "根回しのしすぎ"],
     line: "今日はひとりで進めることに強さが出る。"
   },
   abundant: {
+    key: "abundant",
     label: "繁日",
     title: "多縁日",
-    summary: "約縁数が多く、予定、通知、偶然、紹介が増えやすい。広がる運だが、増えたものを放置すると時の枝葉に埋もれる。",
+    summary: "連絡や予定が増えやすい日。人とのやり取り、紹介、共同作業に向く。抱え込みすぎには注意。",
     good: ["連絡整理", "予定調整", "紹介", "共同作業"],
     bad: ["抱え込み", "未返信の放置"],
     line: "増えるものは吉、増えすぎるものは早めに束ねる。"
   },
   twoStrong: {
+    key: "two",
     label: "双日",
     title: "対話日",
-    summary: "双因子が強く、相手、鏡、ペア、比較に意味が出る。ひとりで決めきるより、誰かとの対話で形が整う。",
+    summary: "相談や確認で流れが整う日。ひとりで決めるより、誰かと話すと答えが見つかりやすい。",
     good: ["相談", "和解", "ペア作業", "確認"],
     bad: ["独断", "曖昧な約束"],
     line: "返事をする、確認する、それだけで運が通る。"
   },
   threeStrong: {
+    key: "three",
     label: "言日",
     title: "言霊日",
-    summary: "言因子が強く、名前をつけること、文章にすること、声に出すことが暦を動かす。未整理の考えは短い言葉に落とすとよい。",
+    summary: "言葉にしたことが残りやすい日。投稿、告知、メモ、命名に向く。余計な一言には注意。",
     good: ["投稿", "告知", "メモ", "命名"],
     bad: ["言いっぱなし", "余計な一言"],
     line: "言葉にした瞬間、今日の意味が固定される。"
   },
   fiveStrong: {
+    key: "five",
     label: "変日",
     title: "変化日",
-    summary: "変因子を帯び、場所、道具、習慣、予定の切り替えが起こりやすい。小さく変えるほど大きい停滞が外れる。",
+    summary: "いつもの流れを少し変える日。移動、買い替え、習慣の切り替えに向く。全部を一気に変えなくてよい。",
     good: ["移動", "買い替え", "模様替え", "習慣変更"],
     bad: ["惰性の継続", "急な全変更"],
     line: "全部変えるより、ひとつ変える方が暦に合う。"
   },
   strange: {
+    key: "strange",
     label: "異日",
     title: "異兆日",
-    summary: "大きな素因数が顔を出し、説明しにくい偶然や未知の選択肢が混ざる。変な兆しをすぐ片付けず、少し観察するとよい。",
+    summary: "いつもと違う兆しに気づきやすい日。初めての場所、調査、保留に向く。すぐ決めつけない方がよい。",
     good: ["調査", "観察", "初見の場所", "保留"],
     bad: ["早合点", "雑な分類"],
     line: "読めないものを、無理に読める形へ潰さない。"
   },
   plain: {
+    key: "plain",
     label: "平因日",
     title: "整因日",
-    summary: "強い偏りは少ないが、基礎の因子は静かにそろっている。大きく当てに行くより、日課や足場を整えるほど運が安定する。",
+    summary: "派手な動きより、片づけ・準備・見直しに向く日。後回しにしていたことを整えると、次の流れが入りやすくなる。",
     good: ["整頓", "復習", "ルーティン", "下準備"],
     bad: ["派手な賭け", "焦った方向転換"],
     line: "平らな日は弱い日ではなく、積み上げが残る日。"
@@ -192,6 +199,7 @@ function renderCalendar() {
     const labelReading = buildNumberReading(getUnixDays(year, month, day));
     const primary = getPrimaryOmen(getCalendarOmens(labelReading), labelReading);
     const stateClass = [
+      `omen-${primary.key}`,
       dateKey === todayKey ? "is-today" : "",
       dateKey === calendarState.selected ? "is-selected" : ""
     ].filter(Boolean).join(" ");
