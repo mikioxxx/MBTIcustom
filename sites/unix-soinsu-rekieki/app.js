@@ -1,6 +1,8 @@
 const els = {
   birthForm: document.querySelector("#birthForm"),
-  birthDate: document.querySelector("#birthDate"),
+  birthYear: document.querySelector("#birthYear"),
+  birthMonth: document.querySelector("#birthMonth"),
+  birthDay: document.querySelector("#birthDay"),
   calendarTitle: document.querySelector("#calendarTitle"),
   calendarGrid: document.querySelector("#calendarGrid"),
   calendarDetail: document.querySelector("#calendarDetail"),
@@ -148,7 +150,7 @@ init();
 
 function init() {
   const today = getJstDateParts();
-  els.birthDate.value = `${today.year - 20}-${pad(today.month)}-${pad(today.day)}`;
+  setupBirthDateDial(today);
   calendarState.year = today.year;
   calendarState.month = today.month;
   calendarState.selected = formatDate(today);
@@ -157,10 +159,48 @@ function init() {
   els.prevMonth.addEventListener("click", () => shiftCalendarMonth(-1));
   els.nextMonth.addEventListener("click", () => shiftCalendarMonth(1));
   els.calendarGrid.addEventListener("click", handleCalendarClick);
+  els.birthYear.addEventListener("change", updateBirthDayOptions);
+  els.birthMonth.addEventListener("change", updateBirthDayOptions);
   els.birthForm.addEventListener("submit", (event) => {
     event.preventDefault();
     renderPersonal();
   });
+}
+
+function setupBirthDateDial(today) {
+  const defaultYear = today.year - 20;
+  fillSelect(els.birthYear, buildYearOptions(today.year), defaultYear);
+  fillSelect(els.birthMonth, buildNumberOptions(1, 12), today.month);
+  updateBirthDayOptions(today.day);
+}
+
+function buildYearOptions(currentYear) {
+  const years = [];
+  for (let year = currentYear; year >= 1901; year -= 1) {
+    years.push(year);
+  }
+  return years;
+}
+
+function buildNumberOptions(start, end) {
+  const values = [];
+  for (let value = start; value <= end; value += 1) {
+    values.push(value);
+  }
+  return values;
+}
+
+function fillSelect(select, values, selectedValue) {
+  select.innerHTML = values.map((value) => `<option value="${value}">${value}</option>`).join("");
+  select.value = String(selectedValue);
+}
+
+function updateBirthDayOptions(preferredDay = Number(els.birthDay.value)) {
+  const year = Number(els.birthYear.value);
+  const month = Number(els.birthMonth.value);
+  const maxDay = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  const selectedDay = Math.min(preferredDay || 1, maxDay);
+  fillSelect(els.birthDay, buildNumberOptions(1, maxDay), selectedDay);
 }
 
 function renderToday() {
@@ -256,7 +296,9 @@ function renderCalendarDetail(year, month, day) {
 }
 
 function renderPersonal() {
-  const [year, month, day] = els.birthDate.value.split("-").map(Number);
+  const year = Number(els.birthYear.value);
+  const month = Number(els.birthMonth.value);
+  const day = Number(els.birthDay.value);
   const days = getUnixDays(year, month, day);
   const reading = buildNumberReading(days);
   const type = getCoreType(reading);

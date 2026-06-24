@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="生年月日のUNIX日数を素因数分解し、機械時代の数秘暦として本質と今日の運勢を読む診断サイト。"
+      content="生年月日のUNIX日数を素因数分解し、エポックから続く機械時代の暦として本質と今日の運勢を読み解く診断サイト。"
     />
     <title>UNIX素因数暦易</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260624-calendar-colors" />
+    <link rel="stylesheet" href="styles.css?v=20260624-date-dial" />
   </head>
   <body>
     <div class="grid-bg" aria-hidden="true"></div>
@@ -24,7 +24,7 @@
           <p class="eyebrow">Machine age divination</p>
           <h1>UNIX素因数暦易</h1>
           <p class="lead">
-            エポックから刻まれたUNIX時間を根源数とし、日付鑑定ではUNIX日数を素因数分解して本質と今日の暦注を読む、根拠は正確で解釈はあやしい機械時代の数秘暦。
+            エポックから刻まれ続けるUNIX時間を根源数とし、日付鑑定ではUNIX日数を素因数分解して本質と今日の暦注を読み解く。これは、数の因果を暦へと変換する機械時代の秘儀である。
           </p>
         </div>
         <figure class="hero-visual">
@@ -56,10 +56,21 @@
           <h2 id="inputHeading">あなたのUNIX日数を読む</h2>
         </div>
         <form class="birth-form" id="birthForm">
-          <label>
-            <span>生年月日</span>
-            <input id="birthDate" type="date" required />
-          </label>
+          <fieldset class="date-dial" aria-label="生年月日">
+            <legend>生年月日</legend>
+            <label>
+              <span>年</span>
+              <select id="birthYear" required></select>
+            </label>
+            <label>
+              <span>月</span>
+              <select id="birthMonth" required></select>
+            </label>
+            <label>
+              <span>日</span>
+              <select id="birthDay" required></select>
+            </label>
+          </fieldset>
           <button type="submit">素因数を読む</button>
         </form>
       </section>
@@ -127,6 +138,6 @@
         </p>
       </section>
     </main>
-    <script src="app.js?v=20260624-calendar-colors" type="module"></script>
+    <script src="app.js?v=20260624-date-dial" type="module"></script>
   </body>
 </html>
