@@ -167,7 +167,7 @@ function renderLoveTypes(){
     button.className="love-option";
     button.type="button";
     button.setAttribute("aria-label",`${code} ${name}`);
-    button.innerHTML=`<img src="../hayakawa/assets/lovetype/${code}.png" alt="${name}" /><span class="love-code">${code}</span>`;
+    button.innerHTML=`<img src="assets/lovetype/${code}.png" alt="${name}" /><span class="love-code">${code}</span>`;
     button.addEventListener("click",()=>{
       state.selectedLove=state.selectedLove===code?null:code;
       document.querySelectorAll(".love-option").forEach(item=>item.classList.remove("is-selected"));
