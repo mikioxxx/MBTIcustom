@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ラブタイプと8つの質問から、推しライバーとの相性を診断します。" />
+    <title>SOLTAN 相性診断</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <section class="intro-view" id="introView">
+        <header class="hero">
+          <div class="hero-mark" aria-hidden="true">S</div>
+          <div>
+            <p class="eyebrow">LOVE TYPE × CHEMISTRY</p>
+            <h1><span>SOLTAN</span>との<br />相性診断</h1>
+            <p class="lead">あなたの恋愛傾向と8つの回答から、ふたりの心地よい距離を読み解きます。</p>
+          </div>
+        </header>
+
+        <section class="selection-panel" aria-labelledby="loveHeading">
+          <div class="section-heading">
+            <span>01</span>
+            <div>
+              <p>YOUR LOVE TYPE</p>
+              <h2 id="loveHeading">あなたのラブタイプは？</h2>
+            </div>
+          </div>
+          <div class="love-grid" id="loveOptions"></div>
+          <p class="selection-note">ラブタイプがわからない場合は、未選択でも診断できます。</p>
+        </section>
+
+        <div class="start-strip">
+          <div><strong>全8問・約1分</strong><span>直感で選んでください</span></div>
+          <button class="primary-button" id="startButton" type="button">診断をはじめる <span>→</span></button>
+        </div>
+      </section>
+
+      <section class="quiz-view is-hidden" id="quizView" aria-live="polite">
+        <header class="quiz-header">
+          <button class="text-button" id="quitButton" type="button">← 最初に戻る</button>
+          <span id="questionCounter">01 / 08</span>
+        </header>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <article class="question-card">
+          <p class="eyebrow">CHEMISTRY QUESTION</p>
+          <h2 id="questionText"></h2>
+          <div class="scale-labels"><span id="leftLabel"></span><span id="rightLabel"></span></div>
+          <div class="answer-row" id="answerRow"></div>
+        </article>
+        <div class="quiz-actions">
+          <button class="secondary-button" id="backButton" type="button">戻る</button>
+          <button class="text-button" id="skipButton" type="button">スキップ</button>
+        </div>
+      </section>
+
+      <section class="result-view is-hidden" id="resultView" aria-live="polite">
+        <header class="result-heading">
+          <p class="eyebrow">YOUR CHEMISTRY RESULT</p>
+          <h2 id="resultCatch"></h2>
+        </header>
+        <div class="result-grid">
+          <section class="score-card">
+            <div class="score-ring" id="scoreRing"><div><strong id="scoreValue">0</strong><span>%</span></div></div>
+            <p id="rankLabel"></p>
+            <div class="type-chip" id="selectedType"></div>
+          </section>
+          <section class="result-copy-card">
+            <p class="result-lead" id="resultLead"></p>
+            <div class="insight-list" id="insightList"></div>
+          </section>
+        </div>
+        <section class="axis-card">
+          <div class="section-heading compact">
+            <span>02</span><div><p>CHEMISTRY BALANCE</p><h2>ふたりの相性バランス</h2></div>
+          </div>
+          <div class="radar-wrap">
+            <canvas id="radarCanvas" aria-label="ライバーとあなたの性格値比較レーダーチャート"></canvas>
+            <div class="radar-legend" aria-hidden="true">
+              <span class="legend-user">あなた</span>
+              <span class="legend-liver">ライバー</span>
+            </div>
+          </div>
+        </section>
+        <section class="share-card-section">
+          <div class="section-heading compact">
+            <span>03</span><div><p>SAVE &amp; SHARE</p><h2>診断結果カード</h2></div>
+          </div>
+          <p class="share-description">画像を保存して、配信コメントやSNSで結果をシェアできます。</p>
+          <div class="result-card-frame">
+            <img id="resultCardImage" alt="SOLTAN相性診断の結果カード" />
+          </div>
+          <button class="primary-button card-download" id="downloadButton" type="button">結果カードを保存</button>
+        </section>
+        <div class="result-actions">
+          <button class="primary-button" id="copyButton" type="button">結果をコピー</button>
+          <button class="secondary-button" id="restartButton" type="button">もう一度診断</button>
+        </div>
+        <p class="provisional-note">※ 現在はライバー側の性格値に仮データを使用しています。</p>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
