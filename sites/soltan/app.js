@@ -138,7 +138,7 @@ const QUESTIONS = [
 ];
 
 const state = { selectedLove:null, current:0, answers:Array(QUESTIONS.length).fill(null), result:null };
-const els = Object.fromEntries(["introView","quizView","resultView","loveOptions","roleList","liverLoveType","startButton","quitButton","questionCounter","progressFill","questionText","leftLabel","rightLabel","answerRow","backButton","skipButton","resultCatch","scoreRing","scoreValue","rankLabel","selectedType","roleImage","roleName","roleTagline","resultLead","insightList","radarCanvas","resultCardImage","downloadButton","copyButton","restartButton"].map(id=>[id,document.getElementById(id)]));
+const els = Object.fromEntries(["introView","quizView","resultView","loveOptions","roleList","liverLoveType","startButton","quitButton","questionCounter","progressFill","questionText","leftLabel","rightLabel","answerRow","backButton","skipButton","resultCatch","scoreRing","scoreValue","rankLabel","selectedType","roleImage","roleName","roleTagline","resultLead","insightList","radarCanvas","resultCardImage","downloadButton","copyButton","restartButton","cardOverlay","cardOverlayImage","cardOverlayClose"].map(id=>[id,document.getElementById(id)]));
 
 init();
 
@@ -152,7 +152,9 @@ function init(){
   els.skipButton.addEventListener("click",()=>chooseAnswer(null));
   els.restartButton.addEventListener("click",restart);
   els.copyButton.addEventListener("click",copyResult);
-  els.downloadButton.addEventListener("click",downloadResultCard);
+  els.downloadButton.addEventListener("click",showResultCard);
+  els.cardOverlayClose.addEventListener("click",hideResultCard);
+  els.cardOverlay.addEventListener("click",(event)=>{ if(event.target===els.cardOverlay) hideResultCard(); });
 }
 
 function renderLiverProfile(){
@@ -454,9 +456,18 @@ function roundRect(ctx,x,y,width,height,radius,fill,stroke){
   ctx.beginPath();ctx.roundRect(x,y,width,height,radius);ctx.fillStyle=fill;ctx.fill();ctx.strokeStyle=stroke;ctx.stroke();
 }
 
-function downloadResultCard(){
+function showResultCard(){
   if(!els.resultCardImage.src)return;
-  const link=document.createElement("a");link.href=els.resultCardImage.src;link.download=`${LIVER_PROFILE.englishName}-compatibility-result.png`;link.click();
+  els.cardOverlayImage.src=els.resultCardImage.src;
+  els.cardOverlay.classList.remove("is-hidden");
+  els.cardOverlay.setAttribute("aria-hidden","false");
+  document.body.classList.add("is-card-overlay-open");
+}
+
+function hideResultCard(){
+  els.cardOverlay.classList.add("is-hidden");
+  els.cardOverlay.setAttribute("aria-hidden","true");
+  document.body.classList.remove("is-card-overlay-open");
 }
 
 async function copyResult(){

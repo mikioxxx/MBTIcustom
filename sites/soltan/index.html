@@ -132,11 +132,11 @@
           <div class="section-heading compact">
             <span>03</span><div><p>SAVE &amp; SHARE</p><h2>診断結果カード</h2></div>
           </div>
-          <p class="share-description">画像を保存して、配信コメントやSNSで結果をシェアできます。</p>
+          <p class="share-description">カードを表示して、画像を長押し保存できます。</p>
           <div class="result-card-frame">
             <img id="resultCardImage" alt="ソルタン相性診断の結果カード" />
           </div>
-          <button class="primary-button card-download" id="downloadButton" type="button">結果カードを保存</button>
+          <button class="primary-button card-download" id="downloadButton" type="button">結果カードを表示</button>
         </section>
         <div class="result-actions">
           <button class="primary-button" id="copyButton" type="button">結果をコピー</button>
@@ -144,6 +144,14 @@
         </div>
         <p class="provisional-note">※ ライバー側はソルタンの回答データを使用しています。</p>
       </section>
+
+      <div class="card-overlay is-hidden" id="cardOverlay" aria-hidden="true">
+        <div class="card-overlay-bar">
+          <p>画像を長押しして保存</p>
+          <button class="text-button" id="cardOverlayClose" type="button">閉じる</button>
+        </div>
+        <img id="cardOverlayImage" alt="保存用の診断結果カード" />
+      </div>
     </main>
     <script src="app.js"></script>
   </body>
