@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ラブタイプと8つの質問から、推しライバーとの相性を診断します。" />
-    <title>SOLTAN 相性診断</title>
+    <meta name="description" content="ラブタイプと8つの質問から、ソルタンとの相性を診断します。" />
+    <title>ソルタン 相性診断</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -13,15 +13,31 @@
   <body>
     <div class="ambient ambient-a" aria-hidden="true"></div>
     <div class="ambient ambient-b" aria-hidden="true"></div>
+    <div class="photo-backdrop" aria-hidden="true">
+      <img src="etc/IMG_8865.PNG" alt="" />
+      <img src="etc/IMG_8866.PNG" alt="" />
+      <img src="etc/IMG_8875.PNG" alt="" />
+    </div>
 
     <main class="app-shell">
       <section class="intro-view" id="introView">
         <header class="hero">
-          <div class="hero-mark" aria-hidden="true">S</div>
+          <figure class="hero-photo">
+            <img class="is-rotated-photo" src="etc/IMG_8865.PNG" alt="ソルタンのプロフィール写真" />
+            <figcaption>
+              <img src="etc/IMG_8875.PNG" alt="" />
+              <span>seoltang</span>
+            </figcaption>
+          </figure>
           <div>
             <p class="eyebrow">LOVE TYPE × CHEMISTRY</p>
-            <h1><span>SOLTAN</span>との<br />相性診断</h1>
+            <h1><span>ソルタン</span>との<br />相性診断</h1>
             <p class="lead">あなたの恋愛傾向と8つの回答から、ふたりの心地よい距離を読み解きます。</p>
+            <div class="liver-profile-chip" aria-label="ソルタンのラブタイプ">
+              <span>ソルタンのラブタイプ</span>
+              <strong id="liverLoveType">FARE｜敏腕マネージャー</strong>
+              <small>連絡や会話で関係を育てるタイプ</small>
+            </div>
           </div>
         </header>
 
@@ -35,6 +51,18 @@
           </div>
           <div class="love-grid" id="loveOptions"></div>
           <p class="selection-note">ラブタイプがわからない場合は、未選択でも診断できます。</p>
+        </section>
+
+        <section class="role-list-panel" aria-labelledby="roleListHeading">
+          <div class="section-heading compact">
+            <span>02</span>
+            <div>
+              <p>CHEMISTRY TITLES</p>
+              <h2 id="roleListHeading">相性称号一覧</h2>
+            </div>
+          </div>
+          <p class="role-list-lead">診断結果では、あなたとソルタンの相性が近い軸から称号が決まります。</p>
+          <div class="role-list-grid" id="roleList"></div>
         </section>
 
         <div class="start-strip">
@@ -73,6 +101,14 @@
             <div class="type-chip" id="selectedType"></div>
           </section>
           <section class="result-copy-card">
+            <div class="role-result">
+              <img id="roleImage" alt="" />
+              <div>
+                <span>あなたの称号</span>
+                <h3 id="roleName"></h3>
+                <p id="roleTagline"></p>
+              </div>
+            </div>
             <p class="result-lead" id="resultLead"></p>
             <div class="insight-list" id="insightList"></div>
           </section>
@@ -82,10 +118,10 @@
             <span>02</span><div><p>CHEMISTRY BALANCE</p><h2>ふたりの相性バランス</h2></div>
           </div>
           <div class="radar-wrap">
-            <canvas id="radarCanvas" aria-label="ライバーとあなたの性格値比較レーダーチャート"></canvas>
+            <canvas id="radarCanvas" aria-label="ソルタンとあなたの性格値比較レーダーチャート"></canvas>
             <div class="radar-legend" aria-hidden="true">
               <span class="legend-user">あなた</span>
-              <span class="legend-liver">ライバー</span>
+              <span class="legend-liver">ソルタン</span>
             </div>
           </div>
         </section>
@@ -95,7 +131,7 @@
           </div>
           <p class="share-description">画像を保存して、配信コメントやSNSで結果をシェアできます。</p>
           <div class="result-card-frame">
-            <img id="resultCardImage" alt="SOLTAN相性診断の結果カード" />
+            <img id="resultCardImage" alt="ソルタン相性診断の結果カード" />
           </div>
           <button class="primary-button card-download" id="downloadButton" type="button">結果カードを保存</button>
         </section>
@@ -103,7 +139,7 @@
           <button class="primary-button" id="copyButton" type="button">結果をコピー</button>
           <button class="secondary-button" id="restartButton" type="button">もう一度診断</button>
         </div>
-        <p class="provisional-note">※ 現在はライバー側の性格値に仮データを使用しています。</p>
+        <p class="provisional-note">※ ライバー側はソルタンの回答データを使用しています。</p>
       </section>
     </main>
     <script src="app.js"></script>
