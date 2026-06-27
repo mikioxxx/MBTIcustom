@@ -37,7 +37,7 @@ const TITLE_ROLES = [
   {
     id: "adventure_partner",
     name: "ソルタンの冒険相棒",
-    image: "新しいフォルダー/冒険相棒.png",
+    image: "assets/roles/adventure_partner.png",
     primary: "dateActive",
     secondary: ["affectionOpen", "supportResponse"],
     tagline: "一緒に動くほど距離が縮まる体験共有枠",
@@ -46,7 +46,7 @@ const TITLE_ROLES = [
   {
     id: "soft_room",
     name: "ソルタンの休憩所",
-    image: "新しいフォルダー/休憩所.png",
+    image: "assets/roles/soft_room.png",
     primary: "dateRelax",
     secondary: ["listenerDistance", "jealousyTolerance"],
     tagline: "落ち着いた時間で安心感を作るまったり枠",
@@ -55,7 +55,7 @@ const TITLE_ROLES = [
   {
     id: "message_line",
     name: "ソルタンの連絡係",
-    image: "新しいフォルダー/連絡係.png",
+    image: "assets/roles/message_line.png",
     primary: "contactFrequency",
     secondary: ["contactDepth", "affectionOpen"],
     tagline: "こまめなやり取りで関係を温める連絡枠",
@@ -64,7 +64,7 @@ const TITLE_ROLES = [
   {
     id: "honest_note",
     name: "ソルタンの本音ノート",
-    image: "新しいフォルダー/本音ノート.png",
+    image: "assets/roles/honest_note.png",
     primary: "contactDepth",
     secondary: ["contactFrequency", "dateRelax"],
     tagline: "軽い会話の奥にある本音まで受け取る対話枠",
@@ -73,7 +73,7 @@ const TITLE_ROLES = [
   {
     id: "straight_sweet",
     name: "ソルタンの甘やかし係",
-    image: "新しいフォルダー/甘やかし係.png",
+    image: "assets/roles/straight_sweet.png",
     primary: "affectionOpen",
     secondary: ["supportResponse", "listenerDistance"],
     tagline: "好きやかわいいをまっすぐ届ける愛情表現枠",
@@ -82,7 +82,7 @@ const TITLE_ROLES = [
   {
     id: "safe_zone",
     name: "ソルタンの安心圏",
-    image: "新しいフォルダー/安心圏.png",
+    image: "assets/roles/safe_zone.png",
     primary: "jealousyTolerance",
     secondary: ["dateRelax", "contactDepth"],
     tagline: "信頼とほどよい距離で居心地を守る安心枠",
@@ -91,7 +91,7 @@ const TITLE_ROLES = [
   {
     id: "close_seat",
     name: "ソルタンの近距離席",
-    image: "新しいフォルダー/近距離席.png",
+    image: "assets/roles/close_seat.png",
     primary: "listenerDistance",
     secondary: ["affectionOpen", "contactFrequency"],
     tagline: "近いテンポで仲良くなれる距離感ぴったり枠",
@@ -100,7 +100,7 @@ const TITLE_ROLES = [
   {
     id: "cheer_lead",
     name: "ソルタンの応援団長",
-    image: "新しいフォルダー/応援団長.png",
+    image: "assets/roles/cheer_lead.png",
     primary: "supportResponse",
     secondary: ["dateActive", "affectionOpen"],
     tagline: "言葉と行動で気持ちを届ける応援枠",
@@ -109,7 +109,7 @@ const TITLE_ROLES = [
   {
     id: "warm_bridge",
     name: "ソルタンの架け橋",
-    image: "新しいフォルダー/架け橋.png",
+    image: "assets/roles/warm_bridge.png",
     primary: "contactDepth",
     secondary: ["supportResponse", "jealousyTolerance"],
     tagline: "会話と信頼でふたりの温度を整える調整枠",
@@ -118,7 +118,7 @@ const TITLE_ROLES = [
   {
     id: "spark_date",
     name: "ソルタンのときめき係",
-    image: "新しいフォルダー/ときめき係.png",
+    image: "assets/roles/spark_date.png",
     primary: "dateActive",
     secondary: ["contactFrequency", "listenerDistance"],
     tagline: "誘い方とテンポで恋の勢いを作るときめき枠",
@@ -138,6 +138,7 @@ const QUESTIONS = [
 ];
 
 const state = { selectedLove:null, current:0, answers:Array(QUESTIONS.length).fill(null), result:null };
+const canvasImageCache = new Map();
 const els = Object.fromEntries(["introView","quizView","resultView","loveOptions","roleList","liverLoveType","startButton","quitButton","questionCounter","progressFill","questionText","leftLabel","rightLabel","answerRow","backButton","skipButton","resultCatch","scoreRing","scoreValue","rankLabel","selectedType","roleImage","roleName","roleTagline","resultLead","insightList","radarCanvas","resultCardImage","downloadButton","copyButton","restartButton","cardOverlay","cardOverlayImage","cardOverlayClose"].map(id=>[id,document.getElementById(id)]));
 
 init();
@@ -379,12 +380,17 @@ async function createResultCard(result,rank,type){
 }
 
 function loadCanvasImage(src){
-  return new Promise((resolve,reject)=>{
+  const url=new URL(src,document.baseURI).href;
+  if(canvasImageCache.has(url)) return canvasImageCache.get(url);
+  const promise=new Promise((resolve,reject)=>{
     const image=new Image();
-    image.onload=()=>resolve(image);
-    image.onerror=reject;
-    image.src=encodeURI(src);
+    image.decoding="async";
+    image.onload=()=>image.naturalWidth?resolve(image):reject(new Error(`Image has no size: ${url}`));
+    image.onerror=()=>reject(new Error(`Image failed to load: ${url}`));
+    image.src=url;
   });
+  canvasImageCache.set(url,promise);
+  return promise;
 }
 
 function drawRoundedImage(ctx,image,x,y,width,height,radius){
