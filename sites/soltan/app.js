@@ -16,6 +16,57 @@ const AXES = [
   ["listenerDistance","距離の近さ"],["supportResponse","応援スタイル"]
 ];
 
+const DAILY_FORTUNES = [
+  {
+    theme: "まっすぐ愛情表現の日",
+    message: "今日は好き・かわいい・うれしいを素直に出すほど運勢アップ。短くても温度のある言葉が、ソルタンの自信につながりやすい日です。",
+    lucky: "今日もかわいすぎる",
+    caution: "照れ隠しのいじりより、まっすぐ褒める"
+  },
+  {
+    theme: "こまめな連絡テンポの日",
+    message: "今日は配信中の小さな変化に反応すると相性よし。長文より、タイミングのいい一言で存在感を残せそうです。",
+    lucky: "今の表情めっちゃ好き",
+    caution: "連投しすぎず、場面に合わせて一言ずつ"
+  },
+  {
+    theme: "応援団長ムーブの日",
+    message: "今日は明るく背中を押すコメントが似合う日。盛り上がりを作る言葉や、がんばりを肯定する一言が届きやすいです。",
+    lucky: "ソルタンならいける",
+    caution: "プレッシャーより、味方感を強める"
+  },
+  {
+    theme: "本音に寄り添う日",
+    message: "今日は楽しい反応だけでなく、気持ちを受け止めるコメントも相性が良い日。話の奥にある温度を拾うと、距離がやさしく縮まります。",
+    lucky: "そういうところ大切にしたい",
+    caution: "解決策を急がず、まず受け止める"
+  },
+  {
+    theme: "近距離リアクションの日",
+    message: "今日は親しみやすいリアクションが吉。少し近めのテンポで話しかけると、配信の空気に自然に混ざれそうです。",
+    lucky: "そこ好き、もう一回見たい",
+    caution: "距離を詰めすぎず、かわいく軽めに"
+  },
+  {
+    theme: "甘やかし係の日",
+    message: "今日はがんばっているところを見つけて褒めると運勢アップ。大げさすぎない甘やかしが、ソルタンに心地よく届きます。",
+    lucky: "今日もえらい、最高",
+    caution: "指摘より、まず良かったところを伝える"
+  },
+  {
+    theme: "会話を深める日",
+    message: "今日は表面的な盛り上がりだけでなく、好きなところを少し具体的に伝えるのが吉。記憶に残るコメントになりやすい日です。",
+    lucky: "今の話、すごく刺さった",
+    caution: "重くしすぎず、一文でさらっと伝える"
+  },
+  {
+    theme: "安心して見守る日",
+    message: "今日は落ち着いた応援が似合う日。派手に目立つより、いつもの場所からやさしく見守ることで安心感を作れます。",
+    lucky: "ゆっくりで大丈夫だよ",
+    caution: "反応を求めすぎず、余白を楽しむ"
+  }
+];
+
 const LIVER_PROFILE = {
   name: "オヌルドソルタン",
   nickname: "ソルタン",
@@ -139,12 +190,13 @@ const QUESTIONS = [
 
 const state = { selectedLove:null, current:0, answers:Array(QUESTIONS.length).fill(null), result:null };
 const canvasImageCache = new Map();
-const els = Object.fromEntries(["introView","quizView","resultView","loveOptions","roleList","liverLoveType","startButton","quitButton","questionCounter","progressFill","questionText","leftLabel","rightLabel","answerRow","backButton","skipButton","resultCatch","scoreRing","scoreValue","rankLabel","selectedType","roleImage","roleName","roleTagline","resultLead","insightList","radarCanvas","resultCardImage","downloadButton","copyButton","restartButton","cardOverlay","cardOverlayImage","cardOverlayClose"].map(id=>[id,document.getElementById(id)]));
+const els = Object.fromEntries(["introView","quizView","resultView","loveOptions","roleList","liverLoveType","dailyFortuneDate","dailyFortuneScore","dailyFortuneTheme","dailyFortuneMessage","dailyFortuneLucky","dailyFortuneCaution","startButton","quitButton","questionCounter","progressFill","questionText","leftLabel","rightLabel","answerRow","backButton","skipButton","resultCatch","scoreRing","scoreValue","rankLabel","selectedType","roleImage","roleName","roleTagline","resultLead","insightList","radarCanvas","resultCardImage","downloadButton","copyButton","restartButton","cardOverlay","cardOverlayImage","cardOverlayClose"].map(id=>[id,document.getElementById(id)]));
 
 init();
 
 function init(){
   renderLiverProfile();
+  renderDailyFortune();
   renderLoveTypes();
   renderRoleList();
   els.startButton.addEventListener("click",startQuiz);
@@ -161,6 +213,31 @@ function init(){
 function renderLiverProfile(){
   const type=LOVE_TYPES.find(([code])=>code===LIVER_PROFILE.loveType);
   els.liverLoveType.textContent=type?`${type[0]}｜${type[1]}`:LIVER_PROFILE.loveType;
+}
+
+function renderDailyFortune(){
+  const today=getJapanDateParts();
+  const dateKey=`${today.year}${String(today.month).padStart(2,"0")}${String(today.day).padStart(2,"0")}`;
+  const seed=`${LIVER_PROFILE.englishName}:${LIVER_PROFILE.loveType}:${dateKey}`;
+  const axisBonus=Math.round((LIVER_PROFILE.scores.affectionOpen+LIVER_PROFILE.scores.supportResponse+LIVER_PROFILE.scores.contactFrequency)/30);
+  const fortune=DAILY_FORTUNES[stableIndex(seed,DAILY_FORTUNES.length)];
+  const score=Math.min(98,70+axisBonus+stableIndex(`${seed}:score`,18));
+  els.dailyFortuneDate.textContent=`${today.month}月${today.day}日の応援ヒント`;
+  els.dailyFortuneScore.textContent=`今日の運勢 ${score}点`;
+  els.dailyFortuneTheme.textContent=fortune.theme;
+  els.dailyFortuneMessage.textContent=fortune.message;
+  els.dailyFortuneLucky.textContent=`「${fortune.lucky}」`;
+  els.dailyFortuneCaution.textContent=fortune.caution;
+}
+
+function getJapanDateParts(){
+  const parts=new Intl.DateTimeFormat("ja-JP",{
+    timeZone:"Asia/Tokyo",
+    year:"numeric",
+    month:"numeric",
+    day:"numeric"
+  }).formatToParts(new Date());
+  return Object.fromEntries(parts.filter(part=>part.type!=="literal").map(part=>[part.type,Number(part.value)]));
 }
 
 function renderLoveTypes(){

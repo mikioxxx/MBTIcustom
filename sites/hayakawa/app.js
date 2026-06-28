@@ -7,6 +7,56 @@ const DATA_FILES = {
   copy: "data/copy-templates.json"
 };
 const ASSET_VERSION = "20260622-role-gallery";
+const DAILY_FORTUNES = [
+  {
+    theme: "近距離リアクションの日",
+    message: "今日は短い反応がいつもより届きやすい日。長文で説明するより、笑った瞬間やかわいい瞬間にすぐ一言を置くと、配信の空気にすっと混ざれます。",
+    lucky: "今の反応めっちゃ好き",
+    caution: "深掘り質問より、まずは共感リアクションを優先"
+  },
+  {
+    theme: "甘やかしコメントの日",
+    message: "今日は早川のがんばりを見つけて、やさしく言葉にするのが吉。大げさすぎない褒め言葉が、じわっと残りやすいタイミングです。",
+    lucky: "今日もいてくれてうれしい",
+    caution: "アドバイス口調より、肯定のひとことが◎"
+  },
+  {
+    theme: "応援団長ムーブの日",
+    message: "今日は場を明るくするコメントが相性よし。初見さんや静かな時間にも、前向きな一言で配信の温度を少し上げられそうです。",
+    lucky: "みんなで盛り上げよ",
+    caution: "内輪ノリが強くなりすぎないように軽やかに"
+  },
+  {
+    theme: "まったり見守りの日",
+    message: "今日は無理に目立つより、落ち着いた見守りが似合う日。コメント数よりも、安心できる存在感を残すイメージで参加するとよさそう。",
+    lucky: "ゆっくりで大丈夫だよ",
+    caution: "反応を急かさず、余白を楽しむ"
+  },
+  {
+    theme: "本音ノートの日",
+    message: "今日は少しだけ気持ちを言葉にすると響きやすい日。重くしすぎず、普段見ていて好きなところを一つだけ伝えるときれいに届きます。",
+    lucky: "そういうところ本当に好き",
+    caution: "長文になりすぎたら一文だけに絞る"
+  },
+  {
+    theme: "冒険相棒の日",
+    message: "今日は新しい企画や話題に乗っかるほど運勢アップ。早川の変化球に笑ってついていくと、いい意味で印象に残れそうです。",
+    lucky: "その流れ乗るしかない",
+    caution: "ツッコミは強すぎず、遊び心多めで"
+  },
+  {
+    theme: "癒し補給の日",
+    message: "今日はやわらかい言葉が似合う日。配信のテンポが速いときほど、ほっとするコメントが小さな休憩所になります。",
+    lucky: "声聞けて元気出た",
+    caution: "心配しすぎより、明るい安心感を渡す"
+  },
+  {
+    theme: "コメント職人の日",
+    message: "今日は言葉選びのセンスが光る日。短くても少し気の利いたコメントや、場面にぴったり合う一言が相性を上げてくれます。",
+    lucky: "今の名シーンすぎる",
+    caution: "連投より、一発のタイミングを大切に"
+  }
+];
 
 const state = {
   data: null,
@@ -40,6 +90,12 @@ const els = {
   rankLabel: document.querySelector("#rankLabel"),
   badgeRow: document.querySelector("#badgeRow"),
   radarCanvas: document.querySelector("#radarCanvas"),
+  dailyFortuneDate: document.querySelector("#dailyFortuneDate"),
+  dailyFortuneScore: document.querySelector("#dailyFortuneScore"),
+  dailyFortuneTheme: document.querySelector("#dailyFortuneTheme"),
+  dailyFortuneMessage: document.querySelector("#dailyFortuneMessage"),
+  dailyFortuneLucky: document.querySelector("#dailyFortuneLucky"),
+  dailyFortuneCaution: document.querySelector("#dailyFortuneCaution"),
   roleName: document.querySelector("#roleName"),
   mainDescription: document.querySelector("#mainDescription"),
   commentList: document.querySelector("#commentList"),
@@ -57,12 +113,38 @@ init();
 async function init() {
   state.data = await loadAppData();
   els.startQuestionCount.textContent = `診断は${state.data.config.questions.length}問`;
+  renderDailyFortune();
   renderTypePicker();
   renderRoleGallery();
   bindEvents();
   if (new URLSearchParams(window.location.search).has("roleGallery")) {
     setRoleGalleryOpen(true);
   }
+}
+
+function renderDailyFortune() {
+  const today = getJapanDateParts();
+  const dateKey = `${today.year}${String(today.month).padStart(2, "0")}${String(today.day).padStart(2, "0")}`;
+  const seed = `hayakawa:enfp:perfect-chameleon:${dateKey}`;
+  const fortune = DAILY_FORTUNES[stableIndex(seed, DAILY_FORTUNES.length)];
+  const score = 72 + stableIndex(`${seed}:score`, 24);
+
+  els.dailyFortuneDate.textContent = `${today.month}月${today.day}日の応援ヒント`;
+  els.dailyFortuneScore.textContent = `今日の運勢 ${score}点`;
+  els.dailyFortuneTheme.textContent = fortune.theme;
+  els.dailyFortuneMessage.textContent = fortune.message;
+  els.dailyFortuneLucky.textContent = `「${fortune.lucky}」`;
+  els.dailyFortuneCaution.textContent = fortune.caution;
+}
+
+function getJapanDateParts() {
+  const parts = new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric"
+  }).formatToParts(new Date());
+  return Object.fromEntries(parts.filter((part) => part.type !== "literal").map((part) => [part.type, Number(part.value)]));
 }
 
 async function loadAppData() {

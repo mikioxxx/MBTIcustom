@@ -48,6 +48,21 @@ h1 span { color: transparent; background: linear-gradient(135deg, #7c2a6c 0%, va
 .liver-profile-chip span { color: var(--muted); font-size: .7rem; font-weight: 900; letter-spacing: .14em; }
 .liver-profile-chip strong { color: #8f2b63; font-size: 1.04rem; line-height: 1.3; }
 .liver-profile-chip small { color: var(--muted); font-size: .78rem; font-weight: 700; }
+.daily-fortune-panel { display: grid; grid-template-columns: minmax(0,.8fr) minmax(320px,1.2fr); gap: 18px; align-items: stretch; margin: 0 0 18px; padding: 24px; border: 1px solid rgba(255,255,255,.66); border-radius: 26px; background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(255,239,246,.72) 56%, rgba(255,244,232,.74)); box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.8); backdrop-filter: blur(16px); }
+.daily-fortune-copy { display: grid; align-content: center; gap: 12px; }
+.daily-fortune-copy h2 { margin: 0; color: transparent; background: linear-gradient(135deg, #7c2a6c 0%, var(--pink-dark) 48%, var(--gold) 100%); -webkit-background-clip: text; background-clip: text; font: 700 clamp(1.8rem,4vw,3rem)/1.1 var(--display); letter-spacing: 0; }
+.daily-fortune-copy p:last-child { margin: 0; color: var(--muted); line-height: 1.85; }
+.daily-fortune-card { display: grid; gap: 14px; padding: clamp(18px,3vw,26px); border: 1px solid rgba(216,165,79,.22); border-radius: 22px; background: radial-gradient(circle at 90% 0%, rgba(255,177,141,.28), transparent 38%), linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,246,250,.72)); box-shadow: inset 0 1px 0 rgba(255,255,255,.72); }
+.daily-fortune-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+.daily-fortune-meta span,.daily-fortune-meta strong { display: inline-grid; min-height: 32px; place-items: center; padding: 6px 11px; border-radius: 999px; font-size: .76rem; font-weight: 900; }
+.daily-fortune-meta span { color: var(--violet); border: 1px solid rgba(111,58,143,.18); background: rgba(111,58,143,.08); }
+.daily-fortune-meta strong { color: var(--pink-dark); border: 1px solid rgba(236,93,131,.25); background: rgba(236,93,131,.1); }
+.daily-fortune-card h3 { margin: 0; color: var(--ink); font-size: clamp(1.35rem,3vw,2.15rem); line-height: 1.28; }
+.daily-fortune-card p { margin: 0; color: var(--muted); font-weight: 500; line-height: 1.9; }
+.daily-fortune-tips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.daily-fortune-tips div { display: grid; gap: 6px; padding: 13px; border: 1px solid rgba(200,61,104,.14); border-radius: 16px; background: rgba(255,255,255,.62); }
+.daily-fortune-tips span { color: var(--muted); font-size: .72rem; font-weight: 900; letter-spacing: .08em; }
+.daily-fortune-tips strong { color: var(--pink-dark); font-size: .94rem; line-height: 1.55; }
 .selection-panel,.role-list-panel,.question-card,.score-card,.result-copy-card,.axis-card,.share-card-section { border: 1px solid rgba(255,255,255,.64); border-radius: 26px; background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,244,241,.7)); box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.74); backdrop-filter: blur(16px); }
 .selection-panel { padding: 30px; }
 .role-list-panel { margin-top: 18px; padding: 30px; }
@@ -145,6 +160,8 @@ h1 span { color: transparent; background: linear-gradient(135deg, #7c2a6c 0%, va
   .photo-backdrop { opacity: .28; }
   .photo-backdrop img { width: 72vw; }
   .photo-backdrop img:nth-child(3) { display: none; }
+  .daily-fortune-panel { grid-template-columns: 1fr; padding: 16px; border-radius: 22px; }
+  .daily-fortune-tips { grid-template-columns: 1fr; }
   .selection-panel,.role-list-panel { padding: 16px; }.love-grid { gap: 7px; }.role-list-grid { grid-template-columns:1fr; }.love-option { border-radius: 10px; }.love-code { top:6px;right:6px;padding:2px 5px;font-size:.55rem; }
   .start-strip { padding: 12px; }.start-strip > div { display:none; }.primary-button { width:100%; }
   .result-grid { grid-template-columns:1fr; }.question-card h2 { margin-bottom:36px; }

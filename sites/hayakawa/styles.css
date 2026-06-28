@@ -305,6 +305,123 @@ h1::after {
   align-items: start;
 }
 
+.daily-fortune-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1.18fr);
+  gap: 18px;
+  align-items: stretch;
+  margin: 0 0 18px;
+  padding: 18px;
+  border: 1px solid rgba(215, 247, 106, 0.32);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(183, 240, 74, 0.14), transparent 42%),
+    rgba(14, 27, 20, 0.9);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.daily-fortune-copy {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+}
+
+.daily-fortune-copy h2 {
+  color: transparent;
+  background: linear-gradient(180deg, #ffffff, var(--gold-bright) 74%, var(--gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-family: "Kaisei Opti", "Noto Sans JP", serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.daily-fortune-copy p:last-child {
+  color: #d7e2cb;
+  line-height: 1.8;
+}
+
+.daily-fortune-card {
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 3vw, 24px);
+  border: 1px solid rgba(244, 247, 232, 0.14);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 88% 0%, rgba(242, 200, 91, 0.16), transparent 38%),
+    rgba(7, 16, 12, 0.54);
+}
+
+.daily-fortune-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.daily-fortune-meta span,
+.daily-fortune-meta strong {
+  display: inline-grid;
+  min-height: 32px;
+  place-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.daily-fortune-meta span {
+  border: 1px solid rgba(101, 214, 176, 0.38);
+  color: var(--teal);
+  background: rgba(101, 214, 176, 0.08);
+}
+
+.daily-fortune-meta strong {
+  border: 1px solid rgba(215, 247, 106, 0.42);
+  color: var(--gold-bright);
+  background: rgba(183, 240, 74, 0.1);
+}
+
+.daily-fortune-card h3 {
+  color: var(--text);
+  font-size: clamp(1.35rem, 3vw, 2.25rem);
+  line-height: 1.25;
+}
+
+.daily-fortune-card p {
+  color: #eef7df;
+  line-height: 1.9;
+}
+
+.daily-fortune-tips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.daily-fortune-tips div {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid rgba(244, 247, 232, 0.12);
+  border-radius: 8px;
+  background: rgba(244, 247, 232, 0.045);
+}
+
+.daily-fortune-tips span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.daily-fortune-tips strong {
+  color: var(--gold-bright);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 .selection-panel,
 .question-panel,
 .score-panel,
@@ -875,6 +992,7 @@ h1::after {
     width: 112px;
   }
 
+  .daily-fortune-panel,
   .selection-layout,
   .result-layout,
   .share-section {
@@ -907,6 +1025,14 @@ h1::after {
 
   .selection-panel {
     padding: 12px;
+  }
+
+  .daily-fortune-panel {
+    padding: 12px;
+  }
+
+  .daily-fortune-tips {
+    grid-template-columns: 1fr;
   }
 
   .score-panel,
